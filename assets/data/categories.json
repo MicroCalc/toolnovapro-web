@@ -1,0 +1,34 @@
+[
+  {
+    "name": "AI Chatbots",
+    "icon": "🤖"
+  },
+  {
+    "name": "AI Writing",
+    "icon": "✍️"
+  },
+  {
+    "name": "AI Image",
+    "icon": "🎨"
+  },
+  {
+    "name": "AI Video",
+    "icon": "🎬"
+  },
+  {
+    "name": "AI Coding",
+    "icon": "💻"
+  },
+  {
+    "name": "AI Marketing",
+    "icon": "📈"
+  },
+  {
+    "name": "AI Productivity",
+    "icon": "⚡"
+  },
+  {
+    "name": "AI Education",
+    "icon": "🎓"
+  }
+]

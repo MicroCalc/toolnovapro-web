@@ -1,0 +1,22 @@
+[
+  {
+    "slug": "chatgpt-guide",
+    "title": "Complete ChatGPT Guide for Beginners",
+    "author": "Daniel",
+    "date": "2026-08-01",
+    "category": "AI",
+    "image": "assets/images/blog/chatgpt.jpg",
+    "excerpt": "Learn how to use ChatGPT effectively with this beginner-friendly guide.",
+    "content": "This is the full blog article..."
+  },
+  {
+    "slug": "best-ai-tools",
+    "title": "Top 20 AI Tools in 2026",
+    "author": "Daniel",
+    "date": "2026-08-03",
+    "category": "AI Tools",
+    "image": "assets/images/blog/ai-tools.jpg",
+    "excerpt": "Discover the best AI tools for productivity, coding, and design.",
+    "content": "This is another full article..."
+  }
+]

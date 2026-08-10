@@ -1,0 +1,14 @@
+[
+  {
+    "slug": "whatsapp",
+    "name": "WhatsApp",
+    "category": "Messaging",
+    "rating": 4.8,
+    "pricing": "Free",
+    "developer": "Meta",
+    "website": "https://www.whatsapp.com",
+    "image": "assets/images/apps/whatsapp.png",
+    "description": "Secure messaging and voice calls.",
+    "platforms": ["Android", "iOS", "Windows", "macOS"]
+  }
+]

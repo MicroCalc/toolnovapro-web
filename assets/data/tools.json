@@ -1,0 +1,159 @@
+[
+  {
+    "id": 1,
+    "slug": "chatgpt-plus",
+    "name": "ChatGPT Plus",
+    "developer": "OpenAI",
+    "category": "AI Chatbot",
+    "pricing": "Premium",
+    "rating": 4.9,
+    "releaseYear": "2022",
+    "featured": true,
+    "trending": true,
+    "editorPick": true,
+    "image": "assets/images/tools/chatgpt-plus.png",
+    "website": "chatgpt-plus.html",
+    "ogads": "https://saveapp.store/cl/i/1xj5nx",
+    "description": "Access ChatGPT Plus features for writing, coding, research and productivity.",
+    "longDescription": "ChatGPT Plus gives you access to the latest OpenAI models with faster responses, advanced reasoning, image generation, file analysis and more.",
+    "features": [
+      "GPT-5",
+      "Image Generation",
+      "File Upload",
+      "Voice Chat",
+      "Coding Assistant",
+      "Writing Assistant"
+    ],
+    "pros": [
+      "Fast responses",
+      "Powerful AI",
+      "Easy to use",
+      "Supports many tasks",
+      "Regular updates"
+    ],
+    "cons": [
+      "Paid subscription",
+      "Internet required"
+    ],
+    "platforms": [
+      "Web",
+      "Windows",
+      "Mac",
+      "Android",
+      "iPhone"
+    ],
+    "screenshots": [
+      "assets/images/screenshots/chatgpt-1.png",
+      "assets/images/screenshots/chatgpt-2.png",
+      "assets/images/screenshots/chatgpt-3.png"
+    ]
+  },
+
+  {
+    "id": 2,
+    "slug": "canva-pro",
+    "name": "Canva Pro",
+    "developer": "Canva",
+    "category": "AI Design",
+    "pricing": "Premium",
+    "rating": 4.9,
+    "releaseYear": "2013",
+    "featured": true,
+    "trending": true,
+    "editorPick": true,
+    "image": "assets/images/tools/canva-pro.png",
+    "website": "canva-pro.html",
+    "ogads": "https://saveapp.store/cl/i/1xj5nx",
+    "description": "Professional graphic design platform with premium templates and AI tools."
+  },
+
+  {
+    "id": 3,
+    "slug": "capcut-pro",
+    "name": "CapCut Pro",
+    "developer": "ByteDance",
+    "category": "AI Video",
+    "pricing": "Premium",
+    "rating": 4.8,
+    "releaseYear": "2020",
+    "featured": true,
+    "trending": true,
+    "editorPick": true,
+    "image": "assets/images/tools/capcut-pro.png",
+    "website": "capcut-pro.html",
+    "ogads": "https://saveapp.store/cl/i/1xj5nx",
+    "description": "Professional AI video editor with premium templates and effects."
+  },
+
+  {
+    "id": 4,
+    "slug": "claude-pro",
+    "name": "Claude Pro",
+    "developer": "Anthropic",
+    "category": "AI Chatbot",
+    "pricing": "Premium",
+    "rating": 4.9,
+    "releaseYear": "2023",
+    "featured": true,
+    "trending": true,
+    "editorPick": true,
+    "image": "assets/images/tools/claude-pro.png",
+    "website": "claude-pro.html",
+    "ogads": "https://saveapp.store/cl/i/1xj5nx",
+    "description": "Advanced AI assistant for writing, coding and long-document analysis."
+  },
+
+  {
+    "id": 5,
+    "slug": "gemini-advanced",
+    "name": "Gemini Advanced",
+    "developer": "Google",
+    "category": "AI Chatbot",
+    "pricing": "Premium",
+    "rating": 4.8,
+    "releaseYear": "2024",
+    "featured": true,
+    "trending": true,
+    "editorPick": true,
+    "image": "assets/images/tools/gemini-advanced.png",
+    "website": "gemini-advanced.html",
+    "ogads": "https://saveapp.store/cl/i/1xj5nx",
+    "description": "Google's premium AI assistant with advanced reasoning and multimodal features."
+  },
+
+  {
+    "id": 6,
+    "slug": "midjourney",
+    "name": "Midjourney",
+    "developer": "Midjourney",
+    "category": "AI Image",
+    "pricing": "Premium",
+    "rating": 4.9,
+    "releaseYear": "2022",
+    "featured": true,
+    "trending": true,
+    "editorPick": true,
+    "image": "assets/images/tools/midjourney.png",
+    "website": "midjourney.html",
+    "ogads": "https://saveapp.store/cl/i/1xj5nx",
+    "description": "Generate stunning AI artwork and realistic images from text prompts."
+  },
+
+  {
+    "id": 7,
+    "slug": "runway",
+    "name": "Runway",
+    "developer": "Runway",
+    "category": "AI Video",
+    "pricing": "Premium",
+    "rating": 4.8,
+    "releaseYear": "2018",
+    "featured": true,
+    "trending": true,
+    "editorPick": true,
+    "image": "assets/images/tools/runway.png",
+    "website": "runway.html",
+    "ogads": "https://saveapp.store/cl/i/1xj5nx",
+    "description": "Create and edit videos with powerful AI-powered video generation tools."
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "title": "OpenAI Launches GPT-5",
+    "description": "OpenAI introduces GPT-5 with major improvements in reasoning, coding, multimodal understanding and speed.",
+    "date": "August 5, 2026",
+    "image": "assets/images/news/gpt5.jpg",
+    "url": "blog.html"
+  },
+  {
+    "id": 2,
+    "title": "Google Expands Gemini AI",
+    "description": "Google announces new Gemini features including faster responses, improved image generation and enterprise tools.",
+    "date": "August 4, 2026",
+    "image": "assets/images/news/gemini.jpg",
+    "url": "blog.html"
+  },
+  {
+    "id": 3,
+    "title": "Claude Gets Major Update",
+    "description": "Anthropic releases a new Claude update with stronger coding, reasoning and long-context performance.",
+    "date": "August 3, 2026",
+    "image": "assets/images/news/claude.jpg",
+    "url": "blog.html"
+  },
+  {
+    "id": 4,
+    "title": "Runway Introduces New AI Video Model",
+    "description": "Runway launches a next-generation video generation model with smoother animation and higher quality output.",
+    "date": "August 2, 2026",
+    "image": "assets/images/news/runway.jpg",
+    "url": "blog.html"
+  },
+  {
+    "id": 5,
+    "title": "GitHub Copilot Adds Smarter Coding",
+    "description": "GitHub Copilot receives new AI capabilities that improve debugging, code suggestions and developer productivity.",
+    "date": "August 1, 2026",
+    "image": "assets/images/news/copilot.jpg",
+    "url": "blog.html"
+  },
+  {
+    "id": 6,
+    "title": "Adobe Firefly Adds New Creative Features",
+    "description": "Adobe expands Firefly with powerful AI image editing, vector generation and commercial design tools.",
+    "date": "July 31, 2026",
+    "image": "assets/images/news/firefly.jpg",
+    "url": "blog.html"
+  }
+]

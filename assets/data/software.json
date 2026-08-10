@@ -1,0 +1,49 @@
+[
+  {
+    "slug": "vscode",
+    "name": "Visual Studio Code",
+    "category": "Code Editor",
+    "rating": 4.9,
+    "pricing": "Free",
+    "developer": "Microsoft",
+    "website": "https://code.visualstudio.com",
+    "image": "assets/images/software/vscode.png",
+    "description": "Lightweight and powerful source code editor.",
+    "platforms": [
+      "Windows",
+      "macOS",
+      "Linux"
+    ]
+  },
+  {
+    "slug": "figma",
+    "name": "Figma",
+    "category": "Design",
+    "rating": 4.8,
+    "pricing": "Freemium",
+    "developer": "Figma",
+    "website": "https://figma.com",
+    "image": "assets/images/software/figma.png",
+    "description": "Collaborative interface design tool.",
+    "platforms": [
+      "Windows",
+      "macOS",
+      "Web"
+    ]
+  },
+  {
+    "slug": "photoshop",
+    "name": "Adobe Photoshop",
+    "category": "Photo Editing",
+    "rating": 4.8,
+    "pricing": "Paid",
+    "developer": "Adobe",
+    "website": "https://adobe.com/products/photoshop.html",
+    "image": "assets/images/software/photoshop.png",
+    "description": "Professional photo editing software.",
+    "platforms": [
+      "Windows",
+      "macOS"
+    ]
+  }
+]
