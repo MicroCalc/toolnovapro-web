@@ -1,0 +1,115 @@
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+/* Fade In */
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+/* Slide Up */
+
+@keyframes slideUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* Scale In */
+
+@keyframes scaleIn{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+/* Floating */
+
+@keyframes floating{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* Utility Classes */
+
+.fade-in{
+
+    animation:fadeIn .8s ease;
+
+}
+
+.slide-up{
+
+    animation:slideUp .8s ease;
+
+}
+
+.scale-in{
+
+    animation:scaleIn .6s ease;
+
+}
+
+.floating{
+
+    animation:floating 4s ease-in-out infinite;
+
+}

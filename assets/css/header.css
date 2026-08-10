@@ -1,0 +1,212 @@
+/* ==========================================
+   HEADER
+========================================== */
+
+.header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+
+    background:var(--surface);
+    border-bottom:1px solid var(--border);
+
+    transition:.3s ease;
+}
+
+.header .container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:80px;
+}
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.logo{
+    font-size:34px;
+    font-weight:800;
+    text-decoration:none;
+    color:var(--text);
+    letter-spacing:-0.5px;
+    transition:.3s ease;
+}
+
+.logo span{
+    color:var(--primary);
+}
+
+.logo:hover{
+    transform:scale(1.03);
+}
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+.navbar{
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.navbar a{
+    position:relative;
+    color:var(--text);
+    text-decoration:none;
+    font-weight:600;
+    padding:10px 14px;
+    border-radius:10px;
+    transition:.3s ease;
+}
+
+.navbar a:hover{
+    color:var(--primary);
+    background:rgba(59,130,246,.08);
+}
+
+.navbar a::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:var(--primary);
+    transform:translateX(-50%);
+    transition:.3s;
+}
+
+.navbar a:hover::after{
+    width:70%;
+}
+
+/* ==========================================
+   THEME BUTTON
+========================================== */
+
+#themeToggle{
+    width:42px;
+    height:42px;
+
+    border:none;
+    border-radius:50%;
+
+    background:var(--card);
+    color:var(--text);
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-left:15px;
+
+    transition:.3s ease;
+}
+
+#themeToggle:hover{
+    background:var(--primary);
+    color:#fff;
+    transform:rotate(180deg);
+}
+
+/* ==========================================
+   MOBILE BUTTON
+========================================== */
+
+.menu-toggle{
+
+    display:none;
+
+    width:46px;
+    height:46px;
+
+    border:none;
+    border-radius:12px;
+
+    background:var(--primary);
+    color:#fff;
+
+    cursor:pointer;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:22px;
+
+    transition:.3s ease;
+}
+
+.menu-toggle:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:768px){
+
+    .header .container{
+        height:80px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+
+    .menu-toggle{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+    .navbar{
+
+        position:absolute;
+
+        top:80px;
+        left:0;
+
+        width:100%;
+
+        display:none;
+
+        flex-direction:column;
+        align-items:center;
+        justify-content:flex-start;
+
+        gap:20px;
+
+        padding:30px 20px;
+
+        background:var(--surface);
+
+        border-top:1px solid var(--border);
+
+        box-shadow:0 15px 40px rgba(0,0,0,.20);
+
+        z-index:9999;
+    }
+
+    .navbar.active{
+        display:flex;
+    }
+
+    .navbar a{
+        width:100%;
+        text-align:center;
+        padding:12px 0;
+    }
+
+    #themeToggle{
+        margin:10px auto 0;
+    }
+
+}

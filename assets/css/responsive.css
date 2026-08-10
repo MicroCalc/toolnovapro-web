@@ -1,0 +1,248 @@
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+/* ==========================
+   TABLETS
+========================== */
+
+@media (max-width:992px){
+
+    .container{
+        width:92%;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+
+    .hero-search{
+        max-width:700px;
+        margin:auto;
+    }
+
+    .featured-card{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .featured-meta,
+    .featured-buttons,
+    .tool-meta{
+        justify-content:center;
+    }
+
+    .tool-header{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .tool-logo{
+        margin:auto;
+    }
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width:768px){
+
+    /* Header */
+
+    .header .container{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        height:80px;
+        padding:0;
+    }
+
+    /* Hamburger */
+
+    .menu-toggle{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+    /* Mobile Navigation */
+
+    .navbar{
+        position:absolute;
+        top:80px;
+        left:0;
+        width:100%;
+
+        display:none;
+        flex-direction:column;
+        align-items:center;
+
+        gap:22px;
+
+        padding:30px 20px;
+
+        background:var(--surface);
+
+        border-top:1px solid var(--border);
+
+        box-shadow:0 20px 40px rgba(0,0,0,.20);
+
+        z-index:9999;
+    }
+
+    .navbar.active{
+        display:flex;
+    }
+
+    .navbar a{
+        width:100%;
+        text-align:center;
+        padding:12px 0;
+    }
+
+    #themeToggle{
+        margin-top:8px;
+    }
+
+    /* Hero */
+
+    .hero{
+        min-height:auto;
+        padding:130px 0 70px;
+        text-align:center;
+    }
+
+    .hero h1{
+        font-size:38px;
+        line-height:1.2;
+    }
+
+    .hero-text{
+        font-size:17px;
+        max-width:100%;
+    }
+
+    /* Search */
+
+    .hero-search{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .hero-search input,
+    .hero-search button{
+        width:100%;
+    }
+
+    /* Buttons */
+
+    .hero-buttons{
+        flex-direction:column;
+        align-items:center;
+        gap:15px;
+        margin-top:30px;
+    }
+
+    .hero-buttons .btn{
+        width:100%;
+        max-width:280px;
+    }
+
+    /* Tags */
+
+    .hero-tags{
+        justify-content:center;
+        gap:10px;
+        margin-top:25px;
+    }
+
+    .hero-tags a{
+        font-size:14px;
+    }
+
+    /* Cards */
+
+    .tool-buttons,
+    .featured-buttons{
+        flex-direction:column;
+        gap:12px;
+    }
+
+}
+
+/* ==========================
+   SMALL MOBILE
+========================== */
+
+@media (max-width:576px){
+
+    .container{
+        width:94%;
+    }
+
+    .hero{
+        padding:120px 0 60px;
+    }
+
+    .hero h1{
+        font-size:30px;
+    }
+
+    .hero-text{
+        font-size:16px;
+    }
+
+    .section-title h2{
+        font-size:30px;
+    }
+
+    .tool-header{
+        padding:25px;
+    }
+
+    .tool-section{
+        padding:25px;
+    }
+
+    .tool-logo{
+        width:120px;
+        height:120px;
+    }
+
+    .hero-tags{
+        gap:8px;
+    }
+
+    .hero-tags a{
+        font-size:13px;
+        padding:8px 14px;
+    }
+
+}
+
+/* ==========================
+   EXTRA SMALL DEVICES
+========================== */
+
+@media (max-width:380px){
+
+    .hero h1{
+        font-size:26px;
+    }
+
+    .hero-text{
+        font-size:15px;
+    }
+
+    .logo{
+        font-size:28px;
+    }
+
+    .menu-toggle{
+        width:42px;
+        height:42px;
+    }
+
+}
