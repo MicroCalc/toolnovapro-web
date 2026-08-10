@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ToolNova Pro - Discover the Best AI Tools, Apps & Software</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+
+    <meta name="description" content="Discover the world's best AI tools, software, and apps. Compare ChatGPT, Claude, Gemini, Midjourney, Runway, Canva AI and hundreds more.">
+
+<meta name="keywords" content="AI tools, artificial intelligence, ChatGPT, Claude, Gemini, Midjourney, AI software, AI apps, ToolNova Pro">
+
+<meta name="author" content="ToolNova Pro">
+
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="ToolNova Pro - Best AI Tools Directory">
+<meta property="og:description" content="Discover and compare the world's best AI tools and software.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ToolNova Pro - Best AI Tools Directory">
+<meta name="twitter:description" content="Discover the best AI tools for writing, coding, design, productivity and business.">
+<meta name="twitter:image" content="https://yourdomain.com/og-image.jpg">
+
+    <link rel="icon" href="favicon.ico">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/cards.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/tool.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    
+</head>
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <div class="container">
+
+        <a href="index.html" class="logo">
+            ToolNova <span>Pro</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+    <nav class="navbar" id="navbar">
+
+    <a href="index.html">Home</a>
+    <a href="ai-tools.html">AI Tools</a>
+    <a href="apps.html">Apps</a>
+    <a href="software.html">Software</a>
+    <a href="blog.html">Blog</a>
+    <a href="favorites.html">Favorites</a>
+    <a href="about.html">About</a>
+
+    <button id="themeToggle">☀️</button>
+
+    </nav>
+
+    </div>
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-bg">
+        <span class="circle circle-1"></span>
+        <span class="circle circle-2"></span>
+        <span class="circle circle-3"></span>
+    </div>
+
+    <div class="container hero-content">
+
+        <span class="hero-badge">
+            🚀 Trusted AI Directory
+        </span>
+
+        <h1>
+            Discover the Future of
+            <span>AI Tools</span>
+        </h1>
+
+        <p class="hero-text">
+            Compare the world's best AI tools, apps and software for writing,
+            coding, design, productivity and business.
+        </p>
+
+        <div class="hero-search">
+
+            <input
+                type="text"
+                id="heroSearch"
+                placeholder="Search AI tools..."
+            >
+
+            <button>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search
+            </button>
+
+        </div>
+
+        <div class="hero-buttons">
+
+            <a href="ai-tools.html" class="btn">
+                Browse AI Tools
+            </a>
+
+            <a href="#categoryGrid" class="btn btn-secondary">
+                Explore Categories
+            </a>
+
+        </div>
+
+        <div class="hero-tags">
+
+            <a href="#">ChatGPT</a>
+            <a href="#">Claude</a>
+            <a href="#">Gemini</a>
+            <a href="#">Midjourney</a>
+            <a href="#">Runway</a>
+            <a href="#">Canva AI</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     WEBSITE STATS
+========================= -->
+
+<section class="stats">
+
+    <div class="container">
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+                <h2 class="counter" data-target="50">0</h2>
+                <p>AI Tools</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 class="counter" data-target="8">0</h2>
+                <p>Categories</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 class="counter" data-target="20">0</h2>
+                <p>K+ Monthly Visitors</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 class="counter" data-target="100">0</h2>
+                <p>Reviews</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+       <!-- =========================
+     TRENDING AI TOOLS
+========================= -->
+<section class="trending">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>🔥 Trending AI Tools</h2>
+            <p>The most popular AI tools this week.</p>
+        </div>
+
+        <div id="trendingTools" class="tool-grid">
+            <!-- JavaScript will load cards here -->
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- =========================
+     BROWSE CATEGORIES
+========================= -->
+
+<section class="categories">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>📂 Browse Categories</h2>
+            <p>Explore AI tools by category.</p>
+        </div>
+
+        <div id="categoryGrid" class="categories-grid"></div>
+        
+        <div class="section-button">
+         <a href="ai-tools.html" class="btn">
+            View All Categories
+        </a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     EDITOR'S PICKS
+========================= -->
+
+<section class="editors-picks">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>⭐ Editor's Picks</h2>
+            <p>Our recommended AI tools for professionals.</p>
+        </div>
+
+        <div id="editorPicks" class="tool-grid"></div>
+
+    </div>
+
+</section>
+
+    <!-- =========================
+     LATEST AI NEWS
+========================= -->
+
+<section class="news">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>📰 Latest AI News</h2>
+            <p>Stay updated with the latest AI industry news.</p>
+        </div>
+
+        <div id="newsGrid" class="news-grid"></div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     NEWSLETTER
+========================= -->
+
+<section class="newsletter">
+
+    <div class="container">
+
+        <div class="newsletter-box">
+
+            <span class="newsletter-badge">
+                📬 Weekly AI Updates
+            </span>
+
+            <h2>
+                Stay Ahead with the Latest AI Tools
+            </h2>
+
+            <p>
+                Join our community and receive the newest AI tools,
+                software reviews, tutorials and industry news directly
+                in your inbox.
+            </p>
+
+            <form class="newsletter-form">
+
+                <input
+                    type="email"
+                    placeholder="Enter your email address"
+                    required
+                >
+
+                <button type="submit">
+                    Subscribe
+                </button>
+
+            </form>
+
+            <small>
+                No spam. Unsubscribe anytime.
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <!-- About -->
+            <div class="footer-column">
+
+                <h3>ToolNova Pro</h3>
+
+                <p>
+                    Discover the world's best AI tools, software and apps.
+                    Compare, review and explore the latest AI technology.
+                </p>
+
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-column">
+
+                <h3>Quick Links</h3>
+
+                <a href="index.html">Home</a>
+                <a href="ai-tools.html">AI Tools</a>
+                <a href="apps.html">Apps</a>
+                <a href="software.html">Software</a>
+                <a href="blog.html">Blog</a>
+
+            </div>
+
+            <!-- Categories -->
+            <div class="footer-column">
+
+                <h3>Categories</h3>
+
+                <a href="category.html?category=AI%20Chatbot">AI Chatbot</a>
+                <a href="category.html?category=AI%20Writing">AI Writing</a>
+                <a href="category.html?category=AI%20Image">AI Image</a>
+                <a href="category.html?category=AI%20Video">AI Video</a>
+                <a href="category.html?category=AI%20Coding">AI Coding</a>
+
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-column">
+
+                <h3>Newsletter</h3>
+
+                <p>Get the latest AI news and tools every week.</p>
+
+                <form class="newsletter-form">
+
+                    <input
+                        type="email"
+                        placeholder="Your email"
+                    >
+
+                    <button type="submit">
+                        Subscribe
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 ToolNova Pro. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- ================= PRO ACCESS POPUP ================= -->
+
+<div class="popup-overlay" id="popup">
+
+    <div class="popup-box">
+
+        <h2>🚀 Get Pro Access</h2>
+
+        <p>
+            To continue, please complete the required step provided by our partner.
+        </p>
+
+        <div class="popup-buttons">
+
+            <button id="completeNow" class="btn">
+                Complete Now
+            </button>
+
+            <button id="closePopup" class="btn btn-secondary">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+    
+    <script src="assets/js/search.js"></script>
+    <script src="assets/js/darkmode.js"></script>
+    <script src="assets/js/slider.js"></script>
+    <script src="assets/js/home.js"></script>
+    <script src="assets/js/news.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/counter.js"></script>
+    <script src="assets/js/popup.js"></script>
+
+
+</body>
+
+</html>
