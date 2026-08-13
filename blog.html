@@ -3,96 +3,416 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AI Blog - ToolNova Pro</title>
+    <title>Blog - ToolNova Pro</title>
 
-<meta name="description" content="Read the latest AI news, tutorials, reviews and guides.">
+    <meta
+        name="description"
+        content="Read the latest AI news, tutorials, guides, reviews and useful insights from ToolNova Pro."
+    >
 
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
 
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/header.css">
-<link rel="stylesheet" href="assets/css/cards.css">
-<link rel="stylesheet" href="assets/css/tool.css">
-<link rel="stylesheet" href="assets/css/footer.css">
-<link rel="stylesheet" href="assets/css/responsive.css">
-<link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/header.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <style>
+
+        /* ================================
+           BLOG
+        ================================= */
+
+        .blog-wrapper {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .blog-card {
+            background: var(--card-bg, #ffffff);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .blog-card-body {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .blog-category {
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 12px;
+            padding: 6px 11px;
+            border-radius: 20px;
+            background: #eef4ff;
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .blog-date {
+            margin-bottom: 10px;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .blog-card-title {
+            margin: 0 0 12px;
+            font-size: 23px;
+            line-height: 1.25;
+        }
+
+        .blog-card-excerpt {
+            margin: 0 0 20px;
+            color: #64748b;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .blog-read-more {
+            display: inline-block;
+            align-self: flex-start;
+            margin-top: auto;
+            padding: 11px 18px;
+            border-radius: 8px;
+            background: #2563eb;
+            color: #ffffff !important;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.2s ease;
+        }
+
+        .blog-read-more:hover {
+            background: #1d4ed8;
+        }
+
+        .blog-loading,
+        .blog-error {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+
+        /* ================================
+           DARK MODE
+        ================================= */
+
+        body.dark .blog-card {
+            background: #1e293b !important;
+            color: #f8fafc !important;
+        }
+
+        body.dark .blog-card-title {
+            color: #ffffff !important;
+        }
+
+        body.dark .blog-card-excerpt {
+            color: #cbd5e1 !important;
+        }
+
+        body.dark .blog-date {
+            color: #94a3b8 !important;
+        }
+
+        body.dark .blog-category {
+            background: #1e3a8a !important;
+            color: #bfdbfe !important;
+        }
+
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 900px) {
+
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .blog-wrapper {
+                margin: 30px auto;
+                padding: 0 15px;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-card-title {
+                font-size: 21px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<!-- ================= HEADER ================= -->
+
+<!-- ================================
+     HEADER
+================================ -->
+
 <header class="header">
+
     <div class="container">
 
         <a href="index.html" class="logo">
             ToolNova <span>Pro</span>
         </a>
 
-    <nav class="navbar">
+        <nav class="navbar">
 
-    <a href="index.html">Home</a>
-    <a href="ai-tools.html">AI Tools</a>
-    <a href="apps.html">Apps</a>
-    <a href="software.html">Software</a>
-    <a href="blog.html">Blog</a>
-    <a href="favorites.html">Favorites</a>
-    <a href="about.html">About</a>
+            <a href="index.html">Home</a>
+            <a href="ai-tools.html">AI Tools</a>
+            <a href="apps.html">Apps</a>
+            <a href="software.html">Software</a>
+            <a href="blog.html">Blog</a>
+            <a href="favorites.html">Favorites</a>
+            <a href="about.html">About</a>
 
-    <button id="themeToggle">☀️</button>
+            <button id="themeToggle">🌙</button>
 
-</nav>
+        </nav>
 
     </div>
+
 </header>
+
+
+<!-- ================================
+     PAGE HEADER
+================================ -->
 
 <section class="page-header">
 
-<div class="container">
+    <div class="container">
 
-<h1>Latest Articles</h1>
+        <h1>Latest Articles</h1>
 
-<p>News, tutorials and AI insights.</p>
+        <p>
+            News, tutorials and AI insights.
+        </p>
 
-</div>
-
-</section>
-
-<section class="news">
-
-<div class="container">
-
-<div id="blogGrid" class="news-grid"></div>
-
-</div>
+    </div>
 
 </section>
+
+
+<!-- ================================
+     BLOG
+================================ -->
+
+<main class="blog-wrapper">
+
+    <div id="blogGrid" class="blog-grid">
+
+        <div class="blog-loading">
+
+            <h2>Loading articles...</h2>
+
+            <p>Please wait.</p>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ================================
+     FOOTER
+================================ -->
 
 <footer class="footer">
 
-<div class="container">
+    <div class="container">
 
-<div class="footer-bottom">
+        <div class="footer-bottom">
 
-<p>© 2026 ToolNova Pro. All rights reserved.</p>
+            <p>
+                © 2026 ToolNova Pro. All rights reserved.
+            </p>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
 </footer>
 
-<script src="assets/js/blog.js"></script>
+
+<!-- ================================
+     JAVASCRIPT
+================================ -->
+
 <script src="assets/js/darkmode.js"></script>
 <script src="assets/js/mobile-menu.js"></script>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+    const blogGrid =
+        document.getElementById("blogGrid");
+
+
+    try {
+
+        const response =
+            await fetch("assets/data/blog.json");
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load blog.json"
+            );
+
+        }
+
+
+        const posts =
+            await response.json();
+
+
+        if (!Array.isArray(posts) || posts.length === 0) {
+
+            blogGrid.innerHTML = `
+                <div class="blog-error">
+
+                    <h2>No Articles Found</h2>
+
+                    <p>
+                        There are currently no articles available.
+                    </p>
+
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        blogGrid.innerHTML = posts.map(post => `
+
+            <article class="blog-card">
+
+                <img
+                    src="${post.image}"
+                    alt="${post.title}"
+                    class="blog-card-image"
+                    loading="lazy"
+                >
+
+                <div class="blog-card-body">
+
+                    <span class="blog-category">
+                        ${post.category}
+                    </span>
+
+                    <div class="blog-date">
+                        ${post.date}
+                    </div>
+
+                    <h2 class="blog-card-title">
+                        ${post.title}
+                    </h2>
+
+                    <p class="blog-card-excerpt">
+                        ${post.excerpt}
+                    </p>
+
+                    <a
+                        href="post.html?slug=${encodeURIComponent(post.slug)}"
+                        class="blog-read-more"
+                    >
+                        Read More
+                    </a>
+
+                </div>
+
+            </article>
+
+        `).join("");
+
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+
+        blogGrid.innerHTML = `
+
+            <div class="blog-error">
+
+                <h2>Unable to Load Articles</h2>
+
+                <p>
+                    Something went wrong while loading
+                    the blog.
+                </p>
+
+                <p>
+                    Please try again later.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+});
+
+</script>
+
 
 </body>
 
