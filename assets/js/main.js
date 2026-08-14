@@ -37,3 +37,40 @@ window.addEventListener("scroll", () => {
     }
 
 });
+
+// ==========================================
+// HERO SEARCH BUTTON
+// ==========================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const heroSearch = document.getElementById("heroSearch");
+    const heroSearchButton = document.getElementById("heroSearchButton");
+
+    if (!heroSearch || !heroSearchButton) return;
+
+    function performHeroSearch() {
+
+        const query = heroSearch.value.trim();
+
+        if (!query) {
+            heroSearch.focus();
+            return;
+        }
+
+        window.location.href =
+            "ai-tools.html?search=" + encodeURIComponent(query);
+    }
+
+    heroSearchButton.addEventListener("click", performHeroSearch);
+
+    heroSearch.addEventListener("keydown", (event) => {
+
+        if (event.key === "Enter") {
+            event.preventDefault();
+            performHeroSearch();
+        }
+
+    });
+
+});
