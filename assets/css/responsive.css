@@ -246,3 +246,28 @@
     }
 
 }
+/* ==========================================
+   MOBILE HERO CLICK FIX
+========================================== */
+
+.hero-bg {
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-buttons,
+.hero-search,
+.hero-tags {
+    position: relative;
+    z-index: 3;
+}
+
+.hero-buttons .btn,
+.hero-search button,
+.hero-tags a {
+    pointer-events: auto;
+}
