@@ -4,7 +4,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById("article");
 
     const metaDescription =
-        document.getElementById("metaDescription");
+    document.getElementById("metaDescription");
+
+const canonicalUrl =
+    document.getElementById("canonicalUrl");
 
 
     /*
@@ -132,12 +135,21 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         if (metaDescription) {
 
-            metaDescription.setAttribute(
-                "content",
-                post.excerpt
-            );
+    metaDescription.setAttribute(
+        "content",
+        post.excerpt
+    );
 
-        }
+}
+
+if (canonicalUrl) {
+
+    canonicalUrl.setAttribute(
+        "href",
+        window.location.href
+    );
+
+}
 
 
         /*
