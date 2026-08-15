@@ -2,10 +2,12 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
+    <!-- Homepage -->
     <url>
         <loc>https://toolnova.bond/</loc>
     </url>
 
+    <!-- Main Categories -->
     <url>
         <loc>https://toolnova.bond/ai-tools.html</loc>
     </url>
@@ -22,12 +24,50 @@
         <loc>https://toolnova.bond/blog.html</loc>
     </url>
 
+    <!-- Important AI Tool Pages -->
+    <url>
+        <loc>https://toolnova.bond/chatgpt-plus.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/claude-pro.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/gemini-advanced.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/midjourney.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/runway.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/canva-pro.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/capcut-pro.html</loc>
+    </url>
+
+    <!-- Supporting Pages -->
     <url>
         <loc>https://toolnova.bond/about.html</loc>
     </url>
 
     <url>
         <loc>https://toolnova.bond/contact.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/privacy.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/terms.html</loc>
     </url>
 
 </urlset>
