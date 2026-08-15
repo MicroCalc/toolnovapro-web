@@ -146,7 +146,7 @@ if (canonicalUrl) {
 
     canonicalUrl.setAttribute(
         "href",
-        window.location.href
+        `https://toolnova.bond/post.html?slug=${encodeURIComponent(slug)}`
     );
 
 }
