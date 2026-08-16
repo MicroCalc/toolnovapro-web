@@ -50,6 +50,59 @@ if (toolCanonical) {
 
 }
 
+// ============================
+// Structured Data - Software
+// ============================
+
+const existingSchema =
+    document.getElementById("toolStructuredData");
+
+if (existingSchema) {
+    existingSchema.remove();
+}
+
+const toolSchema = {
+
+    "@context": "https://schema.org",
+
+    "@type": "SoftwareApplication",
+
+    "name": tool.name,
+
+    "description":
+        tool.longDescription || tool.description,
+
+    "applicationCategory":
+        tool.category,
+
+    "operatingSystem":
+        (tool.platforms || []).join(", "),
+
+    "url":
+        `https://toolnova.bond/tool.html?slug=${encodeURIComponent(tool.slug)}`,
+
+    "publisher": {
+        "@type": "Organization",
+        "name": "ToolNova Pro",
+        "url": "https://toolnova.bond/"
+    }
+
+};
+
+const schemaScript =
+    document.createElement("script");
+
+schemaScript.type =
+    "application/ld+json";
+
+schemaScript.id =
+    "toolStructuredData";
+
+schemaScript.textContent =
+    JSON.stringify(toolSchema);
+
+document.head.appendChild(schemaScript);
+
 
 if (!container) return;
 
