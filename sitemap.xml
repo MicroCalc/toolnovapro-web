@@ -7,7 +7,7 @@
         <loc>https://toolnova.bond/</loc>
     </url>
 
-    <!-- Main Categories -->
+    <!-- Main Pages -->
     <url>
         <loc>https://toolnova.bond/ai-tools.html</loc>
     </url>
@@ -24,36 +24,42 @@
         <loc>https://toolnova.bond/blog.html</loc>
     </url>
 
-    <!-- Important AI Tool Pages -->
     <url>
-        <loc>https://toolnova.bond/chatgpt-plus.html</loc>
+        <loc>https://toolnova.bond/category.html</loc>
+    </url>
+
+    <!-- AI Tool Pages -->
+
+    <url>
+        <loc>https://toolnova.bond/tool.html?slug=chatgpt-plus</loc>
     </url>
 
     <url>
-        <loc>https://toolnova.bond/claude-pro.html</loc>
+        <loc>https://toolnova.bond/tool.html?slug=canva-pro</loc>
     </url>
 
     <url>
-        <loc>https://toolnova.bond/gemini-advanced.html</loc>
+        <loc>https://toolnova.bond/tool.html?slug=capcut-pro</loc>
     </url>
 
     <url>
-        <loc>https://toolnova.bond/midjourney.html</loc>
+        <loc>https://toolnova.bond/tool.html?slug=claude-pro</loc>
     </url>
 
     <url>
-        <loc>https://toolnova.bond/runway.html</loc>
+        <loc>https://toolnova.bond/tool.html?slug=gemini-advanced</loc>
     </url>
 
     <url>
-        <loc>https://toolnova.bond/canva-pro.html</loc>
+        <loc>https://toolnova.bond/tool.html?slug=midjourney</loc>
     </url>
 
     <url>
-        <loc>https://toolnova.bond/capcut-pro.html</loc>
+        <loc>https://toolnova.bond/tool.html?slug=runway</loc>
     </url>
 
     <!-- Supporting Pages -->
+
     <url>
         <loc>https://toolnova.bond/about.html</loc>
     </url>
