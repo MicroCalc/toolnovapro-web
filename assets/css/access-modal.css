@@ -1,0 +1,230 @@
+/* =========================================================
+   ToolNova Pro - Access Modal
+   ========================================================= */
+
+.access-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+.access-modal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* Overlay */
+
+.access-modal-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.72);
+
+    backdrop-filter: blur(4px);
+}
+
+
+/* Modal */
+
+.access-modal-box {
+    position: relative;
+    z-index: 2;
+
+    width: calc(100% - 40px);
+    max-width: 430px;
+
+    padding: 32px 30px 30px;
+
+    background: #202b3b;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45);
+
+    text-align: center;
+
+    transform: translateY(15px) scale(0.97);
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.access-modal.active .access-modal-box {
+    transform: translateY(0) scale(1);
+}
+
+
+/* Close */
+
+.access-modal-close {
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: #9caac0;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.access-modal-close:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
+
+/* Icon */
+
+.access-modal-icon {
+    font-size: 38px;
+    margin-bottom: 8px;
+}
+
+
+/* Heading */
+
+.access-modal-box h2 {
+    margin: 0 0 14px;
+
+    color: #ffffff;
+
+    font-size: 27px;
+    font-weight: 700;
+}
+
+
+/* Description */
+
+.access-modal-box p {
+    margin: 0 auto 26px;
+
+    max-width: 340px;
+
+    color: #aab7c9;
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* Buttons */
+
+.access-modal-buttons {
+    display: flex;
+    gap: 14px;
+}
+
+
+/* Complete */
+
+.complete-access-btn,
+.cancel-access-btn {
+
+    flex: 1;
+
+    min-height: 44px;
+
+    border: none;
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.complete-access-btn {
+    background: #3b82f6;
+    color: #ffffff;
+}
+
+
+.complete-access-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+}
+
+
+.cancel-access-btn {
+    background: #3d4b63;
+    color: #ffffff;
+}
+
+
+.cancel-access-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+}
+
+
+/* Prevent background scrolling */
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .access-modal-box {
+        width: calc(100% - 28px);
+        padding: 28px 20px 22px;
+    }
+
+    .access-modal-box h2 {
+        font-size: 23px;
+    }
+
+    .access-modal-box p {
+        font-size: 14px;
+    }
+
+    .access-modal-buttons {
+        flex-direction: column;
+    }
+
+    .complete-access-btn,
+    .cancel-access-btn {
+        width: 100%;
+    }
+
+}
