@@ -1,49 +1,96 @@
-const params = new URLSearchParams(window.location.search);
-const slug = params.get("slug");
+/* ============================
+   Tool Page
+============================ */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+const slug =
+    params.get("slug");
+
+
+/* ============================
+   Load Tool
+============================ */
 
 async function loadTool() {
 
     try {
 
         const response =
-            await fetch("./assets/data/tools.json");
+            await fetch(
+                "./assets/data/tools.json"
+            );
+
 
         if (!response.ok) {
-            throw new Error("Unable to load tools.json");
+
+            throw new Error(
+                "Unable to load tools.json"
+            );
+
         }
+
 
         const tools =
             await response.json();
 
+
+        /* ============================
+           Find Tool
+        ============================= */
+
         const tool =
-            tools.find(t => t.slug === slug);
-
-        const container =
-            document.getElementById("toolContent");
-
-        const breadcrumb =
-            document.getElementById("breadcrumb");
-
-        const toolDescription =
-            document.getElementById("toolDescription");
-
-        const toolCanonical =
-            document.getElementById("toolCanonical");
+            tools.find(
+                item =>
+                    item.slug === slug
+            );
 
 
         /* ============================
-           Basic Page Validation
-        ============================ */
+           Page Elements
+        ============================= */
+
+        const container =
+            document.getElementById(
+                "toolContent"
+            );
+
+
+        const breadcrumb =
+            document.getElementById(
+                "breadcrumb"
+            );
+
+
+        const toolDescription =
+            document.getElementById(
+                "toolDescription"
+            );
+
+
+        /* ============================
+           Container Validation
+        ============================= */
 
         if (!container) {
+
             return;
+
         }
 
+
+        /* ============================
+           Tool Not Found
+        ============================= */
 
         if (!tool) {
 
             document.title =
                 "Tool Not Found | ToolNova Pro";
+
 
             if (toolDescription) {
 
@@ -54,22 +101,56 @@ async function loadTool() {
 
             }
 
-            if (toolCanonical) {
 
-                toolCanonical.setAttribute(
-                    "href",
-                    "https://toolnova.bond/tool.html"
+            /*
+             * Remove any existing canonical.
+             */
+
+            document
+                .querySelectorAll(
+                    'link[rel="canonical"]'
+                )
+                .forEach(
+                    link =>
+                        link.remove()
                 );
 
-            }
+
+            /*
+             * Create canonical for
+             * the current URL.
+             */
+
+            const notFoundCanonical =
+                document.createElement(
+                    "link"
+                );
+
+
+            notFoundCanonical.rel =
+                "canonical";
+
+
+            notFoundCanonical.href =
+                "https://toolnova.bond/tool.html";
+
+
+            document.head.appendChild(
+                notFoundCanonical
+            );
+
 
             container.innerHTML = `
+
                 <div class="tool-section">
 
-                    <h2>Tool not found</h2>
+                    <h2>
+                        Tool Not Found
+                    </h2>
 
                     <p>
-                        The requested tool could not be found.
+                        The requested tool could not
+                        be found.
                     </p>
 
                     <a
@@ -80,15 +161,18 @@ async function loadTool() {
                     </a>
 
                 </div>
+
             `;
 
+
             return;
+
         }
 
 
         /* ============================
            Dynamic SEO Metadata
-        ============================ */
+        ============================= */
 
         document.title =
             `${tool.name} Review, Features & Alternatives | ToolNova Pro`;
@@ -104,27 +188,68 @@ async function loadTool() {
         }
 
 
-        if (toolCanonical) {
+        /* ============================
+           Dynamic Canonical
+        ============================= */
 
-            toolCanonical.setAttribute(
-                "href",
-                `https://toolnova.bond/tool.html?slug=${encodeURIComponent(tool.slug)}`
+        const canonicalUrl =
+            `https://toolnova.bond/tool.html?slug=${encodeURIComponent(tool.slug)}`;
+
+
+        /*
+         * Remove ALL canonical tags.
+         *
+         * This prevents Google from seeing
+         * multiple conflicting canonical URLs.
+         */
+
+        document
+            .querySelectorAll(
+                'link[rel="canonical"]'
+            )
+            .forEach(
+                link =>
+                    link.remove()
             );
 
-        }
+
+        /*
+         * Create ONE canonical tag.
+         */
+
+        const canonical =
+            document.createElement(
+                "link"
+            );
+
+
+        canonical.rel =
+            "canonical";
+
+
+        canonical.href =
+            canonicalUrl;
+
+
+        document.head.appendChild(
+            canonical
+        );
 
 
         /* ============================
-           Remove Old Structured Data
-        ============================ */
+           Remove Existing Structured Data
+        ============================= */
 
         const oldSoftwareSchema =
             document.getElementById(
                 "toolStructuredData"
             );
 
+
         if (oldSoftwareSchema) {
+
             oldSoftwareSchema.remove();
+
         }
 
 
@@ -133,39 +258,51 @@ async function loadTool() {
                 "toolBreadcrumbStructuredData"
             );
 
+
         if (oldBreadcrumbSchema) {
+
             oldBreadcrumbSchema.remove();
+
         }
 
 
         /* ============================
            SoftwareApplication Schema
-        ============================ */
+        ============================= */
 
         const toolSchema = {
 
-            "@context": "https://schema.org",
+            "@context":
+                "https://schema.org",
 
-            "@type": "SoftwareApplication",
+            "@type":
+                "SoftwareApplication",
 
-            "name": tool.name,
+            "name":
+                tool.name,
 
             "description":
                 tool.longDescription ||
                 tool.description ||
                 "",
 
+            "applicationCategory":
+                "SoftwareApplication",
+
             "operatingSystem":
-                (tool.platforms || []).join(", "),
+                (tool.platforms || [])
+                    .join(", "),
 
             "url":
-                `https://toolnova.bond/tool.html?slug=${encodeURIComponent(tool.slug)}`,
+                canonicalUrl,
 
             "publisher": {
 
-                "@type": "Organization",
+                "@type":
+                    "Organization",
 
-                "name": "ToolNova Pro",
+                "name":
+                    "ToolNova Pro",
 
                 "url":
                     "https://toolnova.bond/"
@@ -176,16 +313,24 @@ async function loadTool() {
 
 
         const schemaScript =
-            document.createElement("script");
+            document.createElement(
+                "script"
+            );
+
 
         schemaScript.type =
             "application/ld+json";
 
+
         schemaScript.id =
             "toolStructuredData";
 
+
         schemaScript.textContent =
-            JSON.stringify(toolSchema);
+            JSON.stringify(
+                toolSchema
+            );
+
 
         document.head.appendChild(
             schemaScript
@@ -193,40 +338,65 @@ async function loadTool() {
 
 
         /* ============================
-           BreadcrumbList Schema
-        ============================ */
-
-        const toolUrl =
-            `https://toolnova.bond/tool.html?slug=${encodeURIComponent(tool.slug)}`;
-
+           Breadcrumb Schema
+        ============================= */
 
         const breadcrumbSchema = {
 
-            "@context": "https://schema.org",
+            "@context":
+                "https://schema.org",
 
-            "@type": "BreadcrumbList",
+            "@type":
+                "BreadcrumbList",
 
             "itemListElement": [
 
                 {
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Home",
-                    "item": "https://toolnova.bond/"
+
+                    "@type":
+                        "ListItem",
+
+                    "position":
+                        1,
+
+                    "name":
+                        "Home",
+
+                    "item":
+                        "https://toolnova.bond/"
+
                 },
 
                 {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "AI Tools",
-                    "item": "https://toolnova.bond/ai-tools.html"
+
+                    "@type":
+                        "ListItem",
+
+                    "position":
+                        2,
+
+                    "name":
+                        "AI Tools",
+
+                    "item":
+                        "https://toolnova.bond/ai-tools.html"
+
                 },
 
                 {
-                    "@type": "ListItem",
-                    "position": 3,
-                    "name": tool.name,
-                    "item": toolUrl
+
+                    "@type":
+                        "ListItem",
+
+                    "position":
+                        3,
+
+                    "name":
+                        tool.name,
+
+                    "item":
+                        canonicalUrl
+
                 }
 
             ]
@@ -235,18 +405,24 @@ async function loadTool() {
 
 
         const breadcrumbSchemaScript =
-            document.createElement("script");
+            document.createElement(
+                "script"
+            );
+
 
         breadcrumbSchemaScript.type =
             "application/ld+json";
 
+
         breadcrumbSchemaScript.id =
             "toolBreadcrumbStructuredData";
+
 
         breadcrumbSchemaScript.textContent =
             JSON.stringify(
                 breadcrumbSchema
             );
+
 
         document.head.appendChild(
             breadcrumbSchemaScript
@@ -255,7 +431,7 @@ async function loadTool() {
 
         /* ============================
            Visible Breadcrumb
-        ============================ */
+        ============================= */
 
         if (breadcrumb) {
 
@@ -265,13 +441,17 @@ async function loadTool() {
                     Home
                 </a>
 
-                /
+                <span>
+                    /
+                </span>
 
                 <a href="ai-tools.html">
                     AI Tools
                 </a>
 
-                /
+                <span>
+                    /
+                </span>
 
                 <span>
                     ${tool.name}
@@ -284,7 +464,7 @@ async function loadTool() {
 
         /* ============================
            Features
-        ============================ */
+        ============================= */
 
         const features =
             (tool.features || [])
@@ -297,7 +477,7 @@ async function loadTool() {
 
         /* ============================
            Pros
-        ============================ */
+        ============================= */
 
         const pros =
             (tool.pros || [])
@@ -310,7 +490,7 @@ async function loadTool() {
 
         /* ============================
            Cons
-        ============================ */
+        ============================= */
 
         const cons =
             (tool.cons || [])
@@ -323,7 +503,7 @@ async function loadTool() {
 
         /* ============================
            Platforms
-        ============================ */
+        ============================= */
 
         const platforms =
             (tool.platforms || [])
@@ -339,7 +519,7 @@ async function loadTool() {
 
         /* ============================
            Screenshots
-        ============================ */
+        ============================= */
 
         const screenshots =
             (tool.screenshots || [])
@@ -359,7 +539,7 @@ async function loadTool() {
 
         /* ============================
            Render Tool Page
-        ============================ */
+        ============================= */
 
         container.innerHTML = `
 
@@ -371,25 +551,27 @@ async function loadTool() {
                     class="tool-logo"
                 >
 
+
                 <div class="tool-header-info">
 
-                    <h1>${tool.name}</h1>
+                    <h1>
+                        ${tool.name}
+                    </h1>
+
 
                     <button
                         class="favorite-btn"
                         data-slug="${tool.slug}"
                         onclick="toggleFavorite('${tool.slug}')"
                     >
-
                         🤍 Save
-
                     </button>
 
+
                     <div class="tool-rating">
-
                         ⭐ ${tool.rating}
-
                     </div>
+
 
                     <div class="tool-meta">
 
@@ -398,15 +580,18 @@ async function loadTool() {
                             ${tool.developer || "Unknown"}
                         </span>
 
+
                         <span>
                             📂
                             ${tool.category}
                         </span>
 
+
                         <span>
                             💰
                             ${tool.pricing}
                         </span>
+
 
                         <span>
                             📅
@@ -415,15 +600,14 @@ async function loadTool() {
 
                     </div>
 
+
                     <a
                         href="${tool.website}"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="btn"
                     >
-
                         🚀 Get Pro Access
-
                     </a>
 
                 </div>
@@ -431,9 +615,13 @@ async function loadTool() {
             </div>
 
 
+            <!-- Description -->
+
             <div class="tool-section">
 
-                <h2>Description</h2>
+                <h2>
+                    Description
+                </h2>
 
                 <p>
                     ${tool.longDescription || tool.description}
@@ -442,9 +630,13 @@ async function loadTool() {
             </div>
 
 
+            <!-- Key Features -->
+
             <div class="tool-section">
 
-                <h2>Key Features</h2>
+                <h2>
+                    Key Features
+                </h2>
 
                 <ul class="feature-list">
 
@@ -455,9 +647,13 @@ async function loadTool() {
             </div>
 
 
+            <!-- Pros -->
+
             <div class="tool-section">
 
-                <h2>Pros</h2>
+                <h2>
+                    Pros
+                </h2>
 
                 <ul class="pros-list">
 
@@ -468,9 +664,13 @@ async function loadTool() {
             </div>
 
 
+            <!-- Cons -->
+
             <div class="tool-section">
 
-                <h2>Cons</h2>
+                <h2>
+                    Cons
+                </h2>
 
                 <ul class="cons-list">
 
@@ -481,9 +681,13 @@ async function loadTool() {
             </div>
 
 
+            <!-- Platforms -->
+
             <div class="tool-section">
 
-                <h2>Platforms</h2>
+                <h2>
+                    Platforms
+                </h2>
 
                 <div class="platforms">
 
@@ -494,9 +698,13 @@ async function loadTool() {
             </div>
 
 
+            <!-- Screenshots -->
+
             <div class="tool-section">
 
-                <h2>Screenshots</h2>
+                <h2>
+                    Screenshots
+                </h2>
 
                 <div class="screenshot-grid">
 
@@ -510,8 +718,8 @@ async function loadTool() {
 
 
         /* ============================
-           Related AI Tools
-        ============================ */
+           Related Tools
+        ============================= */
 
         loadRelatedTools(
             tool,
@@ -528,10 +736,12 @@ async function loadTool() {
             error
         );
 
+
         const container =
             document.getElementById(
                 "toolContent"
             );
+
 
         if (container) {
 
@@ -539,7 +749,9 @@ async function loadTool() {
 
                 <div class="tool-section">
 
-                    <h2>Error</h2>
+                    <h2>
+                        Error
+                    </h2>
 
                     <p>
                         Unable to load tool information.
@@ -559,7 +771,6 @@ async function loadTool() {
 loadTool();
 
 
-
 /* ============================
    Screenshot Lightbox
 ============================ */
@@ -571,17 +782,26 @@ function openLightbox(image) {
             "lightbox"
         );
 
+
     const lightboxImg =
         document.getElementById(
             "lightboxImg"
         );
 
-    if (!lightbox || !lightboxImg) {
+
+    if (
+        !lightbox ||
+        !lightboxImg
+    ) {
+
         return;
+
     }
+
 
     lightbox.style.display =
         "flex";
+
 
     lightboxImg.src =
         image;
@@ -601,7 +821,10 @@ const closeBtn =
     );
 
 
-if (lightbox && closeBtn) {
+if (
+    lightbox &&
+    closeBtn
+) {
 
     closeBtn.onclick =
         function () {
@@ -613,9 +836,12 @@ if (lightbox && closeBtn) {
 
 
     lightbox.onclick =
-        function (e) {
+        function (event) {
 
-            if (e.target === lightbox) {
+            if (
+                event.target ===
+                lightbox
+            ) {
 
                 lightbox.style.display =
                     "none";
@@ -625,7 +851,6 @@ if (lightbox && closeBtn) {
         };
 
 }
-
 
 
 /* ============================
@@ -642,8 +867,11 @@ function loadRelatedTools(
             "relatedTools"
         );
 
+
     if (!container) {
+
         return;
+
     }
 
 
@@ -659,12 +887,16 @@ function loadRelatedTools(
             .slice(0, 3);
 
 
-    if (related.length === 0) {
+    if (
+        related.length === 0
+    ) {
 
         container.innerHTML = `
+
             <p>
                 No related tools available.
             </p>
+
         `;
 
         return;
@@ -685,13 +917,16 @@ function loadRelatedTools(
                             loading="lazy"
                         >
 
+
                         <h3>
                             ${tool.name}
                         </h3>
 
+
                         <p>
                             ${tool.description}
                         </p>
+
 
                         <div class="tool-info">
 
@@ -699,13 +934,12 @@ function loadRelatedTools(
 
                         </div>
 
+
                         <a
                             href="tool.html?slug=${encodeURIComponent(tool.slug)}"
                             class="btn"
                         >
-
                             Learn More
-
                         </a>
 
                     </div>
