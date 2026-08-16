@@ -73,7 +73,7 @@ const toolSchema = {
         tool.longDescription || tool.description,
 
     "applicationCategory":
-        tool.category,
+        "DesignApplication",
 
     "operatingSystem":
         (tool.platforms || []).join(", "),
