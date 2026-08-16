@@ -39,6 +39,7 @@ async function loadTool() {
             return;
         }
 
+
         if (!tool) {
 
             document.title =
@@ -114,20 +115,32 @@ async function loadTool() {
 
 
         /* ============================
-           Structured Data - Software
+           Remove Old Structured Data
         ============================ */
 
-        const existingSchema =
+        const oldSoftwareSchema =
             document.getElementById(
                 "toolStructuredData"
             );
 
-        if (existingSchema) {
-
-            existingSchema.remove();
-
+        if (oldSoftwareSchema) {
+            oldSoftwareSchema.remove();
         }
 
+
+        const oldBreadcrumbSchema =
+            document.getElementById(
+                "toolBreadcrumbStructuredData"
+            );
+
+        if (oldBreadcrumbSchema) {
+            oldBreadcrumbSchema.remove();
+        }
+
+
+        /* ============================
+           SoftwareApplication Schema
+        ============================ */
 
         const toolSchema = {
 
@@ -180,24 +193,97 @@ async function loadTool() {
 
 
         /* ============================
-           Breadcrumb
+           BreadcrumbList Schema
+        ============================ */
+
+        const toolUrl =
+            `https://toolnova.bond/tool.html?slug=${encodeURIComponent(tool.slug)}`;
+
+
+        const breadcrumbSchema = {
+
+            "@context": "https://schema.org",
+
+            "@type": "BreadcrumbList",
+
+            "itemListElement": [
+
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://toolnova.bond/"
+                },
+
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "AI Tools",
+                    "item": "https://toolnova.bond/ai-tools.html"
+                },
+
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": tool.name,
+                    "item": toolUrl
+                }
+
+            ]
+
+        };
+
+
+        const breadcrumbSchemaScript =
+            document.createElement("script");
+
+        breadcrumbSchemaScript.type =
+            "application/ld+json";
+
+        breadcrumbSchemaScript.id =
+            "toolBreadcrumbStructuredData";
+
+        breadcrumbSchemaScript.textContent =
+            JSON.stringify(
+                breadcrumbSchema
+            );
+
+        document.head.appendChild(
+            breadcrumbSchemaScript
+        );
+
+
+        /* ============================
+           Visible Breadcrumb
         ============================ */
 
         if (breadcrumb) {
 
             breadcrumb.innerHTML = `
-                <a href="index.html">Home</a>
+
+                <a href="index.html">
+                    Home
+                </a>
+
                 /
-                <a href="ai-tools.html">AI Tools</a>
+
+                <a href="ai-tools.html">
+                    AI Tools
+                </a>
+
                 /
-                <span>${tool.name}</span>
+
+                <span>
+                    ${tool.name}
+                </span>
+
             `;
 
         }
 
 
         /* ============================
-           Tool Features
+           Features
         ============================ */
 
         const features =
@@ -424,7 +510,7 @@ async function loadTool() {
 
 
         /* ============================
-           Related Tools
+           Related AI Tools
         ============================ */
 
         loadRelatedTools(
@@ -562,14 +648,15 @@ function loadRelatedTools(
 
 
     const related =
-        tools.filter(
-            tool =>
-                tool.category ===
-                    currentTool.category &&
-                tool.slug !==
-                    currentTool.slug
-        )
-        .slice(0, 3);
+        tools
+            .filter(
+                tool =>
+                    tool.category ===
+                        currentTool.category &&
+                    tool.slug !==
+                        currentTool.slug
+            )
+            .slice(0, 3);
 
 
     if (related.length === 0) {
