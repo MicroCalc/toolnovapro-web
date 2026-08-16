@@ -4,10 +4,25 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.getElementById("article");
 
     const metaDescription =
-    document.getElementById("metaDescription");
+        document.getElementById("metaDescription");
 
-const canonicalUrl =
-    document.getElementById("canonicalUrl");
+    const canonicalUrl =
+        document.getElementById("canonicalUrl");
+
+
+    /*
+     * Basic validation
+     */
+
+    if (!articleContainer) {
+
+        console.error(
+            "Article container not found."
+        );
+
+        return;
+
+    }
 
 
     /*
@@ -19,7 +34,9 @@ const canonicalUrl =
      */
 
     const params =
-        new URLSearchParams(window.location.search);
+        new URLSearchParams(
+            window.location.search
+        );
 
     const slug =
         params.get("slug");
@@ -30,6 +47,30 @@ const canonicalUrl =
      */
 
     if (!slug) {
+
+        document.title =
+            "Article Not Found | ToolNova Pro";
+
+
+        if (metaDescription) {
+
+            metaDescription.setAttribute(
+                "content",
+                "The requested article could not be found on ToolNova Pro."
+            );
+
+        }
+
+
+        if (canonicalUrl) {
+
+            canonicalUrl.setAttribute(
+                "href",
+                "https://toolnova.bond/post.html"
+            );
+
+        }
+
 
         articleContainer.innerHTML = `
 
@@ -63,7 +104,9 @@ const canonicalUrl =
          */
 
         const response =
-            await fetch("assets/data/blog.json");
+            await fetch(
+                "assets/data/blog.json"
+            );
 
 
         if (!response.ok) {
@@ -85,7 +128,8 @@ const canonicalUrl =
 
         const post =
             posts.find(
-                item => item.slug === slug
+                item =>
+                    item.slug === slug
             );
 
 
@@ -94,6 +138,30 @@ const canonicalUrl =
          */
 
         if (!post) {
+
+            document.title =
+                "Article Not Found | ToolNova Pro";
+
+
+            if (metaDescription) {
+
+                metaDescription.setAttribute(
+                    "content",
+                    "The requested article could not be found on ToolNova Pro."
+                );
+
+            }
+
+
+            if (canonicalUrl) {
+
+                canonicalUrl.setAttribute(
+                    "href",
+                    "https://toolnova.bond/post.html"
+                );
+
+            }
+
 
             articleContainer.innerHTML = `
 
@@ -122,44 +190,349 @@ const canonicalUrl =
 
 
         /*
-         * Update page title
+         * ============================
+         * Dynamic SEO Metadata
+         * ============================
          */
-
-        document.title =
-            post.title + " | ToolNova Pro";
 
 
         /*
-         * Update meta description
+         * Page title
+         */
+
+        document.title =
+            `${post.title} | ToolNova Pro`;
+
+
+        /*
+         * Meta description
          */
 
         if (metaDescription) {
 
-    metaDescription.setAttribute(
-        "content",
-        post.excerpt
-    );
+            metaDescription.setAttribute(
+                "content",
+                post.excerpt || post.title
+            );
 
-}
-
-if (canonicalUrl) {
-
-    canonicalUrl.setAttribute(
-        "href",
-        `https://toolnova.bond/post.html?slug=${encodeURIComponent(slug)}`
-    );
-
-}
+        }
 
 
         /*
-         * Display article
+         * Canonical URL
+         */
+
+        const postUrl =
+            `https://toolnova.bond/post.html?slug=${encodeURIComponent(slug)}`;
+
+
+        if (canonicalUrl) {
+
+            canonicalUrl.setAttribute(
+                "href",
+                postUrl
+            );
+
+        }
+
+
+        /*
+         * ============================
+         * Article Structured Data
+         * ============================
+         */
+
+
+        /*
+         * Remove existing Article schema
+         */
+
+        const existingArticleSchema =
+            document.getElementById(
+                "articleStructuredData"
+            );
+
+        if (existingArticleSchema) {
+
+            existingArticleSchema.remove();
+
+        }
+
+
+        /*
+         * Convert article image
+         * into an absolute URL
+         */
+
+        let articleImage = "";
+
+        if (post.image) {
+
+            try {
+
+                articleImage =
+                    new URL(
+                        post.image,
+                        window.location.origin + "/"
+                    ).href;
+
+            }
+
+            catch (error) {
+
+                articleImage =
+                    post.image;
+
+            }
+
+        }
+
+
+        /*
+         * Build Article schema
+         */
+
+        const articleSchema = {
+
+            "@context":
+                "https://schema.org",
+
+            "@type":
+                "Article",
+
+            "headline":
+                post.title,
+
+            "description":
+                post.excerpt || post.title,
+
+            "url":
+                postUrl,
+
+            "mainEntityOfPage": {
+
+                "@type":
+                    "WebPage",
+
+                "@id":
+                    postUrl
+
+            },
+
+            "author": {
+
+                "@type":
+                    "Person",
+
+                "name":
+                    post.author || "ToolNova Pro"
+
+            },
+
+            "publisher": {
+
+                "@type":
+                    "Organization",
+
+                "name":
+                    "ToolNova Pro",
+
+                "url":
+                    "https://toolnova.bond/"
+
+            }
+
+        };
+
+
+        /*
+         * Add image only when available
+         */
+
+        if (articleImage) {
+
+            articleSchema.image =
+                articleImage;
+
+        }
+
+
+        /*
+         * Add published date only
+         * when it exists in blog.json
+         */
+
+        if (post.date) {
+
+            articleSchema.datePublished =
+                post.date;
+
+        }
+
+
+        /*
+         * Add modified date only if
+         * blog.json actually contains it
+         */
+
+        if (post.dateModified) {
+
+            articleSchema.dateModified =
+                post.dateModified;
+
+        }
+
+
+        /*
+         * Create Article JSON-LD script
+         */
+
+        const articleSchemaScript =
+            document.createElement(
+                "script"
+            );
+
+        articleSchemaScript.type =
+            "application/ld+json";
+
+        articleSchemaScript.id =
+            "articleStructuredData";
+
+        articleSchemaScript.textContent =
+            JSON.stringify(
+                articleSchema
+            );
+
+        document.head.appendChild(
+            articleSchemaScript
+        );
+
+
+        /*
+         * ============================
+         * Breadcrumb Structured Data
+         * ============================
+         */
+
+
+        /*
+         * Remove existing breadcrumb schema
+         */
+
+        const existingBreadcrumbSchema =
+            document.getElementById(
+                "postBreadcrumbStructuredData"
+            );
+
+        if (existingBreadcrumbSchema) {
+
+            existingBreadcrumbSchema.remove();
+
+        }
+
+
+        /*
+         * Build breadcrumb schema
+         */
+
+        const breadcrumbSchema = {
+
+            "@context":
+                "https://schema.org",
+
+            "@type":
+                "BreadcrumbList",
+
+            "itemListElement": [
+
+                {
+
+                    "@type":
+                        "ListItem",
+
+                    "position":
+                        1,
+
+                    "name":
+                        "Home",
+
+                    "item":
+                        "https://toolnova.bond/"
+
+                },
+
+                {
+
+                    "@type":
+                        "ListItem",
+
+                    "position":
+                        2,
+
+                    "name":
+                        "Blog",
+
+                    "item":
+                        "https://toolnova.bond/blog.html"
+
+                },
+
+                {
+
+                    "@type":
+                        "ListItem",
+
+                    "position":
+                        3,
+
+                    "name":
+                        post.title,
+
+                    "item":
+                        postUrl
+
+                }
+
+            ]
+
+        };
+
+
+        /*
+         * Create Breadcrumb JSON-LD
+         */
+
+        const breadcrumbSchemaScript =
+            document.createElement(
+                "script"
+            );
+
+        breadcrumbSchemaScript.type =
+            "application/ld+json";
+
+        breadcrumbSchemaScript.id =
+            "postBreadcrumbStructuredData";
+
+        breadcrumbSchemaScript.textContent =
+            JSON.stringify(
+                breadcrumbSchema
+            );
+
+        document.head.appendChild(
+            breadcrumbSchemaScript
+        );
+
+
+        /*
+         * ============================
+         * Display Article
+         * ============================
          */
 
         articleContainer.innerHTML = `
 
             <span class="article-category">
-                ${post.category}
+                ${post.category || "AI Tools"}
             </span>
 
 
@@ -170,25 +543,35 @@ if (canonicalUrl) {
 
             <div class="article-meta">
 
-                By <strong>${post.author}</strong>
+                By
+                <strong>
+                    ${post.author || "ToolNova Pro"}
+                </strong>
 
                 &nbsp;•&nbsp;
 
-                ${post.date}
+                ${post.date || ""}
 
             </div>
 
 
-            <img
-                src="${post.image}"
-                alt="${post.title}"
-                class="article-image"
-            >
+            ${
+                post.image
+                    ? `
+                        <img
+                            src="${post.image}"
+                            alt="${post.title}"
+                            class="article-image"
+                            loading="eager"
+                        >
+                    `
+                    : ""
+            }
 
 
             <div class="article-content">
 
-                ${post.content}
+                ${post.content || ""}
 
             </div>
 
@@ -203,19 +586,38 @@ if (canonicalUrl) {
 
         `;
 
-
     }
+
 
     catch (error) {
 
-        console.error(error);
+        console.error(
+            "Article loading error:",
+            error
+        );
+
+
+        document.title =
+            "Article Error | ToolNova Pro";
+
+
+        if (metaDescription) {
+
+            metaDescription.setAttribute(
+                "content",
+                "Unable to load this ToolNova Pro article."
+            );
+
+        }
 
 
         articleContainer.innerHTML = `
 
             <div class="article-error">
 
-                <h2>Unable to Load Article</h2>
+                <h2>
+                    Unable to Load Article
+                </h2>
 
                 <p>
                     Something went wrong while loading
