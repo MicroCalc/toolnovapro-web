@@ -28,35 +28,37 @@
         <loc>https://toolnova.bond/category.html</loc>
     </url>
 
+
     <!-- AI Tool Pages -->
 
     <url>
-        <loc>https://toolnova.bond/tool.html?slug=chatgpt-plus</loc>
+        <loc>https://toolnova.bond/tools/chatgpt-plus.html</loc>
     </url>
 
     <url>
-        <loc>https://toolnova.bond/tool.html?slug=canva-pro</loc>
+        <loc>https://toolnova.bond/tools/canva-pro.html</loc>
     </url>
 
     <url>
-        <loc>https://toolnova.bond/tool.html?slug=capcut-pro</loc>
+        <loc>https://toolnova.bond/tools/capcut-pro.html</loc>
     </url>
 
     <url>
-        <loc>https://toolnova.bond/tool.html?slug=claude-pro</loc>
+        <loc>https://toolnova.bond/tools/claude-pro.html</loc>
     </url>
 
     <url>
-        <loc>https://toolnova.bond/tool.html?slug=gemini-advanced</loc>
+        <loc>https://toolnova.bond/tools/gemini-advanced.html</loc>
     </url>
 
     <url>
-        <loc>https://toolnova.bond/tool.html?slug=midjourney</loc>
+        <loc>https://toolnova.bond/tools/midjourney.html</loc>
     </url>
 
     <url>
-        <loc>https://toolnova.bond/tool.html?slug=runway</loc>
+        <loc>https://toolnova.bond/tools/runway.html</loc>
     </url>
+
 
     <!-- Supporting Pages -->
 
