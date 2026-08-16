@@ -198,9 +198,6 @@ async function loadTool() {
 
         /*
          * Remove ALL canonical tags.
-         *
-         * This prevents Google from seeing
-         * multiple conflicting canonical URLs.
          */
 
         document
@@ -601,11 +598,15 @@ async function loadTool() {
                     </div>
 
 
+                    <!-- ============================
+                         Get Pro Access Button
+                    ============================= -->
+
                     <a
-                        href="${tool.website}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="btn"
+                        href="${tool.ogads || tool.website || '#'}"
+                        class="btn get-pro-access"
+                        data-ogads="${tool.ogads || ''}"
+                        data-url="${tool.ogads || tool.website || ''}"
                     >
                         🚀 Get Pro Access
                     </a>
@@ -620,7 +621,7 @@ async function loadTool() {
             <div class="tool-section">
 
                 <h2>
-                    Description
+                    ${tool.name} Description
                 </h2>
 
                 <p>
@@ -950,6 +951,7 @@ function loadRelatedTools(
 
 }
 
+
 /* =========================================
    PRO ACCESS POPUP
 ========================================= */
@@ -959,32 +961,56 @@ function loadRelatedTools(
     "use strict";
 
 
-    /* -----------------------------------------
-       Create popup
-    ----------------------------------------- */
+    /* =========================================
+       Create Popup
+    ========================================= */
 
     function createProAccessModal() {
 
-        if (document.getElementById("proAccessModal")) {
+        if (
+            document.getElementById(
+                "proAccessModal"
+            )
+        ) {
+
             return;
+
         }
 
 
-        const modal = document.createElement("div");
+        const modal =
+            document.createElement(
+                "div"
+            );
 
-        modal.id = "proAccessModal";
-        modal.className = "pro-access-modal hidden";
+
+        modal.id =
+            "proAccessModal";
+
+
+        modal.className =
+            "pro-access-modal hidden";
 
 
         modal.innerHTML = `
-            <div class="pro-access-box">
 
-                <h2>🚀 Get Pro Access</h2>
+            <div
+                class="pro-access-box"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="proAccessTitle"
+            >
+
+                <h2 id="proAccessTitle">
+                    🚀 Get Pro Access
+                </h2>
+
 
                 <p>
-                    To continue, please complete the required
-                    step provided by our partner.
+                    To continue, please complete the
+                    required step provided by our partner.
                 </p>
+
 
                 <div class="pro-access-buttons">
 
@@ -995,6 +1021,7 @@ function loadRelatedTools(
                     >
                         Complete Now
                     </button>
+
 
                     <button
                         type="button"
@@ -1007,175 +1034,251 @@ function loadRelatedTools(
                 </div>
 
             </div>
+
         `;
 
 
-        document.body.appendChild(modal);
+        document.body.appendChild(
+            modal
+        );
 
 
-        /* -----------------------------------------
-           Cancel button
-        ----------------------------------------- */
+        /* =========================================
+           Cancel
+        ========================================= */
 
-        document
-            .getElementById("proAccessCancel")
-            .addEventListener("click", function () {
-
-                closeProAccessModal();
-
-            });
+        const cancelButton =
+            document.getElementById(
+                "proAccessCancel"
+            );
 
 
-        /* -----------------------------------------
-           Click outside popup
-        ----------------------------------------- */
+        if (cancelButton) {
 
-        modal.addEventListener("click", function (event) {
+            cancelButton.addEventListener(
+                "click",
+                closeProAccessModal
+            );
 
-            if (event.target === modal) {
-
-                closeProAccessModal();
-
-            }
-
-        });
+        }
 
 
-        /* -----------------------------------------
-           ESC key
-        ----------------------------------------- */
+        /* =========================================
+           Click Outside
+        ========================================= */
 
-        document.addEventListener("keydown", function (event) {
+        modal.addEventListener(
+            "click",
+            function (event) {
 
-            if (
-                event.key === "Escape" &&
-                !modal.classList.contains("hidden")
-            ) {
+                if (
+                    event.target === modal
+                ) {
 
-                closeProAccessModal();
+                    closeProAccessModal();
+
+                }
 
             }
+        );
 
-        });
+
+        /* =========================================
+           ESC Key
+        ========================================= */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape" &&
+                    !modal.classList.contains(
+                        "hidden"
+                    )
+                ) {
+
+                    closeProAccessModal();
+
+                }
+
+            }
+        );
 
     }
 
 
-
     /* =========================================
-       Open popup
+       Open Popup
     ========================================= */
 
-    function openProAccessModal(url) {
+    function openProAccessModal(
+        destination
+    ) {
 
         createProAccessModal();
 
 
         const modal =
-            document.getElementById("proAccessModal");
+            document.getElementById(
+                "proAccessModal"
+            );
 
 
         const completeButton =
-            document.getElementById("proAccessComplete");
+            document.getElementById(
+                "proAccessComplete"
+            );
 
 
-        /* Store destination URL */
+        if (
+            !modal ||
+            !completeButton
+        ) {
 
-        completeButton.dataset.url = url || "";
+            return;
 
-
-        completeButton.onclick = function () {
-
-            const destination =
-                completeButton.dataset.url;
-
-
-            if (destination) {
-
-                window.location.href = destination;
-
-            }
-
-        };
+        }
 
 
-        modal.classList.remove("hidden");
+        /*
+         * Save destination URL.
+         */
 
-        document.body.style.overflow = "hidden";
+        completeButton.dataset.url =
+            destination || "";
+
+
+        /*
+         * Complete Now button.
+         */
+
+        completeButton.onclick =
+            function () {
+
+                const url =
+                    completeButton.dataset.url;
+
+
+                if (!url) {
+
+                    console.error(
+                        "No partner URL found."
+                    );
+
+                    return;
+
+                }
+
+
+                window.location.href =
+                    url;
+
+            };
+
+
+        modal.classList.remove(
+            "hidden"
+        );
+
+
+        document.body.style.overflow =
+            "hidden";
 
     }
 
 
-
     /* =========================================
-       Close popup
+       Close Popup
     ========================================= */
 
     function closeProAccessModal() {
 
         const modal =
-            document.getElementById("proAccessModal");
+            document.getElementById(
+                "proAccessModal"
+            );
 
 
         if (!modal) {
+
             return;
+
         }
 
 
-        modal.classList.add("hidden");
+        modal.classList.add(
+            "hidden"
+        );
 
-        document.body.style.overflow = "";
+
+        document.body.style.overflow =
+            "";
 
     }
 
 
-
     /* =========================================
-       Detect Get Pro Access button
+       Detect Get Pro Access Button
     ========================================= */
 
-    document.addEventListener("click", function (event) {
+    document.addEventListener(
+        "click",
+        function (event) {
 
-        const button =
-            event.target.closest(
-                ".get-pro-access, #getProAccess, [data-pro-access]"
+            const button =
+                event.target.closest(
+                    ".get-pro-access"
+                );
+
+
+            if (!button) {
+
+                return;
+
+            }
+
+
+            /*
+             * Stop normal link navigation.
+             */
+
+            event.preventDefault();
+
+
+            /*
+             * Get partner URL.
+             *
+             * Priority:
+             *
+             * 1. data-ogads
+             * 2. data-url
+             * 3. href
+             */
+
+            const destination =
+                button.dataset.ogads ||
+                button.dataset.url ||
+                button.getAttribute("href") ||
+                "";
+
+
+            openProAccessModal(
+                destination
             );
 
-
-        if (!button) {
-            return;
         }
-
-
-        event.preventDefault();
-
-
-        /*
-         * Get destination URL.
-         *
-         * Supports:
-         * data-url
-         * data-ogads
-         * href
-         */
-
-        const url =
-            button.dataset.url ||
-            button.dataset.ogads ||
-            button.getAttribute("href") ||
-            "";
-
-
-        openProAccessModal(url);
-
-    });
+    );
 
 
     /* =========================================
-       Initialize
+       Initialize Popup
     ========================================= */
 
-    if (document.readyState === "loading") {
+    if (
+        document.readyState ===
+        "loading"
+    ) {
 
         document.addEventListener(
             "DOMContentLoaded",
