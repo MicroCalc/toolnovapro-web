@@ -949,3 +949,243 @@ function loadRelatedTools(
             .join("");
 
 }
+
+/* =========================================
+   PRO ACCESS POPUP
+========================================= */
+
+(function () {
+
+    "use strict";
+
+
+    /* -----------------------------------------
+       Create popup
+    ----------------------------------------- */
+
+    function createProAccessModal() {
+
+        if (document.getElementById("proAccessModal")) {
+            return;
+        }
+
+
+        const modal = document.createElement("div");
+
+        modal.id = "proAccessModal";
+        modal.className = "pro-access-modal hidden";
+
+
+        modal.innerHTML = `
+            <div class="pro-access-box">
+
+                <h2>🚀 Get Pro Access</h2>
+
+                <p>
+                    To continue, please complete the required
+                    step provided by our partner.
+                </p>
+
+                <div class="pro-access-buttons">
+
+                    <button
+                        type="button"
+                        class="pro-access-complete"
+                        id="proAccessComplete"
+                    >
+                        Complete Now
+                    </button>
+
+                    <button
+                        type="button"
+                        class="pro-access-cancel"
+                        id="proAccessCancel"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+
+        document.body.appendChild(modal);
+
+
+        /* -----------------------------------------
+           Cancel button
+        ----------------------------------------- */
+
+        document
+            .getElementById("proAccessCancel")
+            .addEventListener("click", function () {
+
+                closeProAccessModal();
+
+            });
+
+
+        /* -----------------------------------------
+           Click outside popup
+        ----------------------------------------- */
+
+        modal.addEventListener("click", function (event) {
+
+            if (event.target === modal) {
+
+                closeProAccessModal();
+
+            }
+
+        });
+
+
+        /* -----------------------------------------
+           ESC key
+        ----------------------------------------- */
+
+        document.addEventListener("keydown", function (event) {
+
+            if (
+                event.key === "Escape" &&
+                !modal.classList.contains("hidden")
+            ) {
+
+                closeProAccessModal();
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =========================================
+       Open popup
+    ========================================= */
+
+    function openProAccessModal(url) {
+
+        createProAccessModal();
+
+
+        const modal =
+            document.getElementById("proAccessModal");
+
+
+        const completeButton =
+            document.getElementById("proAccessComplete");
+
+
+        /* Store destination URL */
+
+        completeButton.dataset.url = url || "";
+
+
+        completeButton.onclick = function () {
+
+            const destination =
+                completeButton.dataset.url;
+
+
+            if (destination) {
+
+                window.location.href = destination;
+
+            }
+
+        };
+
+
+        modal.classList.remove("hidden");
+
+        document.body.style.overflow = "hidden";
+
+    }
+
+
+
+    /* =========================================
+       Close popup
+    ========================================= */
+
+    function closeProAccessModal() {
+
+        const modal =
+            document.getElementById("proAccessModal");
+
+
+        if (!modal) {
+            return;
+        }
+
+
+        modal.classList.add("hidden");
+
+        document.body.style.overflow = "";
+
+    }
+
+
+
+    /* =========================================
+       Detect Get Pro Access button
+    ========================================= */
+
+    document.addEventListener("click", function (event) {
+
+        const button =
+            event.target.closest(
+                ".get-pro-access, #getProAccess, [data-pro-access]"
+            );
+
+
+        if (!button) {
+            return;
+        }
+
+
+        event.preventDefault();
+
+
+        /*
+         * Get destination URL.
+         *
+         * Supports:
+         * data-url
+         * data-ogads
+         * href
+         */
+
+        const url =
+            button.dataset.url ||
+            button.dataset.ogads ||
+            button.getAttribute("href") ||
+            "";
+
+
+        openProAccessModal(url);
+
+    });
+
+
+    /* =========================================
+       Initialize
+    ========================================= */
+
+    if (document.readyState === "loading") {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            createProAccessModal
+        );
+
+    } else {
+
+        createProAccessModal();
+
+    }
+
+})();
