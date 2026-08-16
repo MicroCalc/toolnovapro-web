@@ -5,194 +5,336 @@ async function loadTool() {
 
     try {
 
-        const response = await fetch("./assets/data/tools.json");
+        const response =
+            await fetch("./assets/data/tools.json");
 
         if (!response.ok) {
             throw new Error("Unable to load tools.json");
         }
 
-        const tools = await response.json();
+        const tools =
+            await response.json();
 
-        const tool = tools.find(t => t.slug === slug);
+        const tool =
+            tools.find(t => t.slug === slug);
 
-        const container = document.getElementById("toolContent");
-const breadcrumb = document.getElementById("breadcrumb");
+        const container =
+            document.getElementById("toolContent");
 
-const toolDescription =
-    document.getElementById("toolDescription");
+        const breadcrumb =
+            document.getElementById("breadcrumb");
 
-const toolCanonical =
-    document.getElementById("toolCanonical");
+        const toolDescription =
+            document.getElementById("toolDescription");
 
-
-// ============================
-// Dynamic SEO Metadata
-// ============================
-
-document.title =
-    `${tool.name} Review, Features & Alternatives | ToolNova Pro`;
-
-if (toolDescription) {
-
-    toolDescription.setAttribute(
-        "content",
-        `Explore ${tool.name} features, capabilities, pricing, use cases and alternatives. Learn what ${tool.name} can do and whether it is right for you.`
-    );
-
-}
-
-if (toolCanonical) {
-
-    toolCanonical.setAttribute(
-        "href",
-        `https://toolnova.bond/tool.html?slug=${encodeURIComponent(tool.slug)}`
-    );
-
-}
-
-// ============================
-// Structured Data - Software
-// ============================
-
-const existingSchema =
-    document.getElementById("toolStructuredData");
-
-if (existingSchema) {
-    existingSchema.remove();
-}
-
-const toolSchema = {
-
-    "@context": "https://schema.org",
-
-    "@type": "SoftwareApplication",
-
-    "name": tool.name,
-
-    "description":
-        tool.longDescription || tool.description,
-
-    "applicationCategory":
-        "DesignApplication",
-
-    "operatingSystem":
-        (tool.platforms || []).join(", "),
-
-    "url":
-        `https://toolnova.bond/tool.html?slug=${encodeURIComponent(tool.slug)}`,
-
-    "publisher": {
-        "@type": "Organization",
-        "name": "ToolNova Pro",
-        "url": "https://toolnova.bond/"
-    }
-
-};
-
-const schemaScript =
-    document.createElement("script");
-
-schemaScript.type =
-    "application/ld+json";
-
-schemaScript.id =
-    "toolStructuredData";
-
-schemaScript.textContent =
-    JSON.stringify(toolSchema);
-
-document.head.appendChild(schemaScript);
+        const toolCanonical =
+            document.getElementById("toolCanonical");
 
 
-if (!container) return;
+        /* ============================
+           Basic Page Validation
+        ============================ */
+
+        if (!container) {
+            return;
+        }
 
         if (!tool) {
 
+            document.title =
+                "Tool Not Found | ToolNova Pro";
+
+            if (toolDescription) {
+
+                toolDescription.setAttribute(
+                    "content",
+                    "The requested AI tool could not be found on ToolNova Pro."
+                );
+
+            }
+
+            if (toolCanonical) {
+
+                toolCanonical.setAttribute(
+                    "href",
+                    "https://toolnova.bond/tool.html"
+                );
+
+            }
+
             container.innerHTML = `
                 <div class="tool-section">
-                    <h2>Tool not found</h2>
-                    <p>The requested tool could not be found.</p>
 
-                    <a href="ai-tools.html" class="btn">
+                    <h2>Tool not found</h2>
+
+                    <p>
+                        The requested tool could not be found.
+                    </p>
+
+                    <a
+                        href="ai-tools.html"
+                        class="btn"
+                    >
                         Back to AI Tools
                     </a>
+
                 </div>
             `;
-            if (typeof updateFavoriteButtons === "function") {
-            updateFavoriteButtons();
-}
 
             return;
+        }
+
+
+        /* ============================
+           Dynamic SEO Metadata
+        ============================ */
+
+        document.title =
+            `${tool.name} Review, Features & Alternatives | ToolNova Pro`;
+
+
+        if (toolDescription) {
+
+            toolDescription.setAttribute(
+                "content",
+                `Explore ${tool.name} features, capabilities, pricing, use cases and alternatives. Learn what ${tool.name} can do and whether it is right for you.`
+            );
 
         }
 
-        const features = (tool.features || [])
-            .map(item => `<li>✔ ${item}</li>`)
-            .join("");
 
-        const pros = (tool.pros || [])
-            .map(item => `<li>✅ ${item}</li>`)
-            .join("");
+        if (toolCanonical) {
 
-        const cons = (tool.cons || [])
-            .map(item => `<li>❌ ${item}</li>`)
-            .join("");
+            toolCanonical.setAttribute(
+                "href",
+                `https://toolnova.bond/tool.html?slug=${encodeURIComponent(tool.slug)}`
+            );
 
-        const platforms = (tool.platforms || [])
-            .map(item => `
-                <span class="platform">${item}</span>
-            `)
-            .join("");
+        }
 
-        const screenshots = (tool.screenshots || [])
-            .map(img => `
-                <img
-                    src="${img}"
-                    alt="${tool.name}"
-                    class="screenshot"
-                    onclick="openLightbox('${img}')"
-                >
-            `)
-            .join("");
+
+        /* ============================
+           Structured Data - Software
+        ============================ */
+
+        const existingSchema =
+            document.getElementById(
+                "toolStructuredData"
+            );
+
+        if (existingSchema) {
+
+            existingSchema.remove();
+
+        }
+
+
+        const toolSchema = {
+
+            "@context": "https://schema.org",
+
+            "@type": "SoftwareApplication",
+
+            "name": tool.name,
+
+            "description":
+                tool.longDescription ||
+                tool.description ||
+                "",
+
+            "operatingSystem":
+                (tool.platforms || []).join(", "),
+
+            "url":
+                `https://toolnova.bond/tool.html?slug=${encodeURIComponent(tool.slug)}`,
+
+            "publisher": {
+
+                "@type": "Organization",
+
+                "name": "ToolNova Pro",
+
+                "url":
+                    "https://toolnova.bond/"
+
+            }
+
+        };
+
+
+        const schemaScript =
+            document.createElement("script");
+
+        schemaScript.type =
+            "application/ld+json";
+
+        schemaScript.id =
+            "toolStructuredData";
+
+        schemaScript.textContent =
+            JSON.stringify(toolSchema);
+
+        document.head.appendChild(
+            schemaScript
+        );
+
+
+        /* ============================
+           Breadcrumb
+        ============================ */
+
+        if (breadcrumb) {
+
+            breadcrumb.innerHTML = `
+                <a href="index.html">Home</a>
+                /
+                <a href="ai-tools.html">AI Tools</a>
+                /
+                <span>${tool.name}</span>
+            `;
+
+        }
+
+
+        /* ============================
+           Tool Features
+        ============================ */
+
+        const features =
+            (tool.features || [])
+                .map(
+                    item =>
+                        `<li>✔ ${item}</li>`
+                )
+                .join("");
+
+
+        /* ============================
+           Pros
+        ============================ */
+
+        const pros =
+            (tool.pros || [])
+                .map(
+                    item =>
+                        `<li>✅ ${item}</li>`
+                )
+                .join("");
+
+
+        /* ============================
+           Cons
+        ============================ */
+
+        const cons =
+            (tool.cons || [])
+                .map(
+                    item =>
+                        `<li>❌ ${item}</li>`
+                )
+                .join("");
+
+
+        /* ============================
+           Platforms
+        ============================ */
+
+        const platforms =
+            (tool.platforms || [])
+                .map(
+                    item => `
+                        <span class="platform">
+                            ${item}
+                        </span>
+                    `
+                )
+                .join("");
+
+
+        /* ============================
+           Screenshots
+        ============================ */
+
+        const screenshots =
+            (tool.screenshots || [])
+                .map(
+                    img => `
+                        <img
+                            src="${img}"
+                            alt="${tool.name} screenshot"
+                            class="screenshot"
+                            loading="lazy"
+                            onclick="openLightbox('${img}')"
+                        >
+                    `
+                )
+                .join("");
+
+
+        /* ============================
+           Render Tool Page
+        ============================ */
 
         container.innerHTML = `
 
             <div class="tool-header">
 
-                <img src="${tool.image}" class="tool-logo">
+                <img
+                    src="${tool.image}"
+                    alt="${tool.name} logo"
+                    class="tool-logo"
+                >
 
                 <div class="tool-header-info">
 
                     <h1>${tool.name}</h1>
+
                     <button
                         class="favorite-btn"
                         data-slug="${tool.slug}"
-                        onclick="toggleFavorite('${tool.slug}')">
+                        onclick="toggleFavorite('${tool.slug}')"
+                    >
 
                         🤍 Save
 
-                      </button>
+                    </button>
 
                     <div class="tool-rating">
+
                         ⭐ ${tool.rating}
+
                     </div>
 
                     <div class="tool-meta">
 
-                        <span>👨‍💻 ${tool.developer || "Unknown"}</span>
+                        <span>
+                            👨‍💻
+                            ${tool.developer || "Unknown"}
+                        </span>
 
-                        <span>📂 ${tool.category}</span>
+                        <span>
+                            📂
+                            ${tool.category}
+                        </span>
 
-                        <span>💰 ${tool.pricing}</span>
+                        <span>
+                            💰
+                            ${tool.pricing}
+                        </span>
 
-                        <span>📅 ${tool.releaseYear || "-"}</span>
+                        <span>
+                            📅
+                            ${tool.releaseYear || "-"}
+                        </span>
 
                     </div>
 
                     <a
                         href="${tool.website}"
                         target="_blank"
-                        class="btn">
+                        rel="noopener noreferrer"
+                        class="btn"
+                    >
 
                         🚀 Get Pro Access
 
@@ -202,13 +344,17 @@ if (!container) return;
 
             </div>
 
+
             <div class="tool-section">
 
                 <h2>Description</h2>
 
-                <p>${tool.longDescription || tool.description}</p>
+                <p>
+                    ${tool.longDescription || tool.description}
+                </p>
 
             </div>
+
 
             <div class="tool-section">
 
@@ -222,6 +368,7 @@ if (!container) return;
 
             </div>
 
+
             <div class="tool-section">
 
                 <h2>Pros</h2>
@@ -233,6 +380,7 @@ if (!container) return;
                 </ul>
 
             </div>
+
 
             <div class="tool-section">
 
@@ -246,6 +394,7 @@ if (!container) return;
 
             </div>
 
+
             <div class="tool-section">
 
                 <h2>Platforms</h2>
@@ -257,6 +406,7 @@ if (!container) return;
                 </div>
 
             </div>
+
 
             <div class="tool-section">
 
@@ -272,26 +422,45 @@ if (!container) return;
 
         `;
 
-        loadRelatedTools(tool, tools);
+
+        /* ============================
+           Related Tools
+        ============================ */
+
+        loadRelatedTools(
+            tool,
+            tools
+        );
 
     }
 
-    catch(error){
 
-        console.error(error);
+    catch (error) {
 
-        const container = document.getElementById("toolContent");
+        console.error(
+            "Tool loading error:",
+            error
+        );
 
-        if(container){
+        const container =
+            document.getElementById(
+                "toolContent"
+            );
+
+        if (container) {
 
             container.innerHTML = `
+
                 <div class="tool-section">
 
                     <h2>Error</h2>
 
-                    <p>Unable to load tool information.</p>
+                    <p>
+                        Unable to load tool information.
+                    </p>
 
                 </div>
+
             `;
 
         }
@@ -299,6 +468,7 @@ if (!container) return;
     }
 
 }
+
 
 loadTool();
 
@@ -308,41 +478,65 @@ loadTool();
    Screenshot Lightbox
 ============================ */
 
-function openLightbox(image){
+function openLightbox(image) {
 
-    const lightbox = document.getElementById("lightbox");
+    const lightbox =
+        document.getElementById(
+            "lightbox"
+        );
 
-    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxImg =
+        document.getElementById(
+            "lightboxImg"
+        );
 
-    if(!lightbox || !lightboxImg) return;
+    if (!lightbox || !lightboxImg) {
+        return;
+    }
 
-    lightbox.style.display="flex";
+    lightbox.style.display =
+        "flex";
 
-    lightboxImg.src=image;
+    lightboxImg.src =
+        image;
 
 }
 
-const lightbox=document.getElementById("lightbox");
 
-const closeBtn=document.querySelector(".close-lightbox");
+const lightbox =
+    document.getElementById(
+        "lightbox"
+    );
 
-if(lightbox && closeBtn){
 
-    closeBtn.onclick=function(){
+const closeBtn =
+    document.querySelector(
+        ".close-lightbox"
+    );
 
-        lightbox.style.display="none";
 
-    };
+if (lightbox && closeBtn) {
 
-    lightbox.onclick=function(e){
+    closeBtn.onclick =
+        function () {
 
-        if(e.target===lightbox){
+            lightbox.style.display =
+                "none";
 
-            lightbox.style.display="none";
+        };
 
-        }
 
-    };
+    lightbox.onclick =
+        function (e) {
+
+            if (e.target === lightbox) {
+
+                lightbox.style.display =
+                    "none";
+
+            }
+
+        };
 
 }
 
@@ -352,55 +546,85 @@ if(lightbox && closeBtn){
    Related AI Tools
 ============================ */
 
-function loadRelatedTools(currentTool, tools){
+function loadRelatedTools(
+    currentTool,
+    tools
+) {
 
-    const container=document.getElementById("relatedTools");
+    const container =
+        document.getElementById(
+            "relatedTools"
+        );
 
-    if(!container) return;
+    if (!container) {
+        return;
+    }
 
-    const related=tools.filter(tool=>
 
-        tool.category===currentTool.category &&
-        tool.slug!==currentTool.slug
+    const related =
+        tools.filter(
+            tool =>
+                tool.category ===
+                    currentTool.category &&
+                tool.slug !==
+                    currentTool.slug
+        )
+        .slice(0, 3);
 
-    ).slice(0,3);
 
-    if(related.length===0){
+    if (related.length === 0) {
 
-        container.innerHTML=`
-            <p>No related tools available.</p>
+        container.innerHTML = `
+            <p>
+                No related tools available.
+            </p>
         `;
 
         return;
 
     }
 
-    container.innerHTML=related.map(tool=>`
 
-        <div class="tool-card">
+    container.innerHTML =
+        related
+            .map(
+                tool => `
 
-            <img src="${tool.image}" alt="${tool.name}">
+                    <div class="tool-card">
 
-            <h3>${tool.name}</h3>
+                        <img
+                            src="${tool.image}"
+                            alt="${tool.name} logo"
+                            loading="lazy"
+                        >
 
-            <p>${tool.description}</p>
+                        <h3>
+                            ${tool.name}
+                        </h3>
 
-            <div class="tool-info">
+                        <p>
+                            ${tool.description}
+                        </p>
 
-                ⭐ ${tool.rating}
+                        <div class="tool-info">
 
-            </div>
+                            ⭐ ${tool.rating}
 
-            <a
-                href="tool.html?slug=${tool.slug}"
-                class="btn">
+                        </div>
 
-                Learn More
+                        <a
+                            href="tool.html?slug=${encodeURIComponent(tool.slug)}"
+                            class="btn"
+                        >
 
-            </a>
+                            Learn More
 
-        </div>
+                        </a>
 
-    `).join("");
+                    </div>
+
+                `
+            )
+            .join("");
 
 }
