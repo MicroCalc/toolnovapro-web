@@ -16,31 +16,42 @@ async function loadTool() {
         const tool = tools.find(t => t.slug === slug);
 
         const container = document.getElementById("toolContent");
-        const breadcrumb = document.getElementById("breadcrumb");
+const breadcrumb = document.getElementById("breadcrumb");
 
-if (breadcrumb) {
+const toolDescription =
+    document.getElementById("toolDescription");
 
-    breadcrumb.innerHTML = `
-        <a href="index.html">Home</a>
+const toolCanonical =
+    document.getElementById("toolCanonical");
 
-        <span>›</span>
 
-        <a href="ai-tools.html">AI Tools</a>
+// ============================
+// Dynamic SEO Metadata
+// ============================
 
-        <span>›</span>
+document.title =
+    `${tool.name} Review, Features & Alternatives | ToolNova Pro`;
 
-        <a href="category.html?category=${encodeURIComponent(tool.category)}">
-            ${tool.category}
-        </a>
+if (toolDescription) {
 
-        <span>›</span>
-
-        <strong>${tool.name}</strong>
-    `;
+    toolDescription.setAttribute(
+        "content",
+        `Explore ${tool.name} features, capabilities, pricing, use cases and alternatives. Learn what ${tool.name} can do and whether it is right for you.`
+    );
 
 }
 
-        if (!container) return;
+if (toolCanonical) {
+
+    toolCanonical.setAttribute(
+        "href",
+        `https://toolnova.bond/tool.html?slug=${encodeURIComponent(tool.slug)}`
+    );
+
+}
+
+
+if (!container) return;
 
         if (!tool) {
 
