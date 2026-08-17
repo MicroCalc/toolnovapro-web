@@ -29,7 +29,9 @@
         content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     >
 
-    <!-- Favicon -->
+    <!-- ================================
+         FAVICON
+    ================================= -->
 
     <link
         rel="icon"
@@ -62,7 +64,9 @@
     >
 
 
-    <!-- Main CSS -->
+    <!-- ================================
+         MAIN CSS
+    ================================= -->
 
     <link
         rel="stylesheet"
@@ -334,7 +338,11 @@
 
             overflow-x: auto;
 
-            margin: 25px 0;
+            overflow-y: hidden;
+
+            margin: 30px 0;
+
+            padding-bottom: 5px;
 
             -webkit-overflow-scrolling: touch;
 
@@ -345,43 +353,73 @@
 
             width: 100%;
 
-            min-width: 700px;
+            min-width: 720px;
 
-            border-collapse: separate;
+            border-collapse: collapse;
 
             border-spacing: 0;
 
             table-layout: fixed;
 
+            background: #ffffff;
+
+            color: #111827;
+
+            font-size: 16px;
+
+            line-height: 1.5;
+
         }
 
+
+        /* ==================================================
+           TABLE CELLS
+        ================================================== */
 
         .comparison-table th,
         .comparison-table td {
 
-            padding: 10px 14px;
+            padding: 14px 16px;
 
             text-align: left;
 
             vertical-align: top;
 
-            line-height: 1.5;
-
-            word-break: normal;
-
-            overflow-wrap: break-word;
+            border: 1px solid #e5e7eb;
 
             color: #111827 !important;
 
+            background: #ffffff;
+
+            white-space: normal;
+
+            word-break: normal;
+
+            overflow-wrap: anywhere;
+
         }
 
 
-        .comparison-table th {
+        /* ==================================================
+           TABLE HEADER
+        ================================================== */
+
+        .comparison-table thead th {
+
+            background: #f8fafc;
+
+            color: #111827 !important;
 
             font-weight: 700;
 
+            font-size: 16px;
+
         }
 
+
+        /* ==================================================
+           TABLE COLUMN WIDTHS
+        ================================================== */
 
         .comparison-table th:nth-child(1),
         .comparison-table td:nth-child(1) {
@@ -403,6 +441,54 @@
         .comparison-table td:nth-child(3) {
 
             width: 35%;
+
+        }
+
+
+        /* ==================================================
+           TABLE BODY
+        ================================================== */
+
+        .comparison-table tbody tr:nth-child(even) td {
+
+            background: #f8fafc;
+
+        }
+
+
+        .comparison-table tbody tr:hover td {
+
+            background: #f1f5f9;
+
+        }
+
+
+        /* ==================================================
+           FIRST COLUMN
+        ================================================== */
+
+        .comparison-table tbody td:first-child {
+
+            font-weight: 600;
+
+        }
+
+
+        /* ==================================================
+           TABLE NOTE
+        ================================================== */
+
+        .comparison-table-note {
+
+            margin-top: 15px;
+
+            margin-bottom: 25px;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            color: #475569 !important;
 
         }
 
@@ -535,10 +621,53 @@
            DARK MODE TABLE
         ================================================== */
 
+        body.dark .comparison-table {
+
+            background: #ffffff !important;
+
+            color: #111827 !important;
+
+        }
+
+
         body.dark .comparison-table th,
         body.dark .comparison-table td {
 
+            background: #ffffff !important;
+
             color: #111827 !important;
+
+            border-color: #e5e7eb !important;
+
+        }
+
+
+        body.dark .comparison-table thead th {
+
+            background: #f8fafc !important;
+
+            color: #111827 !important;
+
+        }
+
+
+        body.dark .comparison-table tbody tr:nth-child(even) td {
+
+            background: #f8fafc !important;
+
+        }
+
+
+        body.dark .comparison-table tbody tr:hover td {
+
+            background: #f1f5f9 !important;
+
+        }
+
+
+        body.dark .comparison-table-note {
+
+            color: #475569 !important;
 
         }
 
@@ -568,6 +697,8 @@
                 width: 100%;
 
                 padding: 25px 20px;
+
+                border-radius: 12px;
 
             }
 
@@ -613,13 +744,89 @@
             }
 
 
-            /* Mobile comparison table */
+            /* ==================================================
+               MOBILE COMPARISON TABLE
+            ================================================== */
 
             .comparison-table-wrapper {
 
                 width: 100%;
 
                 overflow-x: auto;
+
+                margin: 25px 0;
+
+            }
+
+
+            .comparison-table {
+
+                min-width: 680px;
+
+                font-size: 14px;
+
+            }
+
+
+            .comparison-table th,
+            .comparison-table td {
+
+                padding: 11px 12px;
+
+                font-size: 14px;
+
+                line-height: 1.5;
+
+            }
+
+
+            .comparison-table thead th {
+
+                font-size: 14px;
+
+            }
+
+
+            .comparison-table-note {
+
+                font-size: 14px;
+
+            }
+
+        }
+
+
+        /* ==================================================
+           VERY SMALL SCREENS
+        ================================================== */
+
+        @media (max-width: 480px) {
+
+
+            .article-wrapper {
+
+                width: 96%;
+
+            }
+
+
+            .article-card {
+
+                padding: 20px 15px;
+
+            }
+
+
+            .article-title {
+
+                font-size: 26px;
+
+            }
+
+
+            .article-content {
+
+                font-size: 15px;
 
             }
 
@@ -634,9 +841,9 @@
             .comparison-table th,
             .comparison-table td {
 
-                padding: 9px 12px;
+                padding: 10px;
 
-                font-size: 14px;
+                font-size: 13px;
 
             }
 
