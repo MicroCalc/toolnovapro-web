@@ -11,7 +11,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
     /*
-     * Basic validation
+     * ==================================================
+     * BASIC VALIDATION
+     * ==================================================
      */
 
     if (!articleContainer) {
@@ -26,11 +28,12 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
     /*
-     * Get slug from URL
+     * ==================================================
+     * GET SLUG FROM URL
      *
      * Example:
-     *
      * post.html?slug=best-ai-tools-for-students-2026
+     * ==================================================
      */
 
     const params =
@@ -43,7 +46,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
     /*
-     * No slug
+     * ==================================================
+     * NO SLUG
+     * ==================================================
      */
 
     if (!slug) {
@@ -76,16 +81,20 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             <div class="article-error">
 
-                <h2>Article Not Found</h2>
+                <h2>
+                    Article Not Found
+                </h2>
 
                 <p>
                     No article was specified.
                 </p>
 
                 <p>
+
                     <a href="blog.html">
                         ← Back to Blog
                     </a>
+
                 </p>
 
             </div>
@@ -100,7 +109,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     try {
 
         /*
-         * Load blog database
+         * ==================================================
+         * LOAD BLOG DATABASE
+         * ==================================================
          */
 
         const response =
@@ -123,7 +134,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * Find article
+         * ==================================================
+         * FIND ARTICLE
+         * ==================================================
          */
 
         const post =
@@ -134,7 +147,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * Article doesn't exist
+         * ==================================================
+         * ARTICLE DOES NOT EXIST
+         * ==================================================
          */
 
         if (!post) {
@@ -167,7 +182,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                 <div class="article-error">
 
-                    <h2>Article Not Found</h2>
+                    <h2>
+                        Article Not Found
+                    </h2>
 
                     <p>
                         The article you're looking for
@@ -175,9 +192,11 @@ document.addEventListener("DOMContentLoaded", async function () {
                     </p>
 
                     <p>
+
                         <a href="blog.html">
                             ← Back to Blog
                         </a>
+
                     </p>
 
                 </div>
@@ -190,23 +209,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * ============================
-         * Dynamic SEO Metadata
-         * ============================
-         */
-
-
-        /*
-         * Page title
+         * ==================================================
+         * DYNAMIC SEO METADATA
+         * ==================================================
          */
 
         document.title =
             `${post.title} | ToolNova Pro`;
 
-
-        /*
-         * Meta description
-         */
 
         if (metaDescription) {
 
@@ -219,7 +229,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * Canonical URL
+         * ==================================================
+         * CANONICAL URL
+         * ==================================================
          */
 
         const postUrl =
@@ -237,14 +249,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * ============================
-         * Article Structured Data
-         * ============================
-         */
-
-
-        /*
-         * Remove existing Article schema
+         * ==================================================
+         * ARTICLE STRUCTURED DATA
+         * ==================================================
          */
 
         const existingArticleSchema =
@@ -261,10 +268,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         /*
          * Convert article image
-         * into an absolute URL
+         * into absolute URL
          */
 
         let articleImage = "";
+
 
         if (post.image) {
 
@@ -346,7 +354,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * Add image only when available
+         * Add image when available
          */
 
         if (articleImage) {
@@ -358,8 +366,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * Add published date only
-         * when it exists in blog.json
+         * Add published date
          */
 
         if (post.date) {
@@ -371,8 +378,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * Add modified date only if
-         * blog.json actually contains it
+         * Add modified date
          */
 
         if (post.dateModified) {
@@ -384,7 +390,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * Create Article JSON-LD script
+         * Create Article JSON-LD
          */
 
         const articleSchemaScript =
@@ -409,14 +415,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * ============================
-         * Breadcrumb Structured Data
-         * ============================
-         */
-
-
-        /*
-         * Remove existing breadcrumb schema
+         * ==================================================
+         * BREADCRUMB STRUCTURED DATA
+         * ==================================================
          */
 
         const existingBreadcrumbSchema =
@@ -430,10 +431,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         }
 
-
-        /*
-         * Build breadcrumb schema
-         */
 
         const breadcrumbSchema = {
 
@@ -524,9 +521,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * ============================
-         * Display Article
-         * ============================
+         * ==================================================
+         * DISPLAY ARTICLE
+         * ==================================================
          */
 
         articleContainer.innerHTML = `
@@ -544,6 +541,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             <div class="article-meta">
 
                 By
+
                 <strong>
                     ${post.author || "ToolNova Pro"}
                 </strong>
@@ -585,6 +583,189 @@ document.addEventListener("DOMContentLoaded", async function () {
             </div>
 
         `;
+
+
+        /*
+         * ==================================================
+         * FIX ARTICLE TABLES
+         *
+         * Automatically finds every table inside
+         * the article and gives it the correct classes.
+         * ==================================================
+         */
+
+        const articleContent =
+            articleContainer.querySelector(
+                ".article-content"
+            );
+
+
+        if (articleContent) {
+
+            const tables =
+                articleContent.querySelectorAll(
+                    "table"
+                );
+
+
+            tables.forEach(function (table) {
+
+                /*
+                 * Add our table class
+                 */
+
+                table.classList.add(
+                    "comparison-table"
+                );
+
+
+                /*
+                 * Create wrapper
+                 */
+
+                const wrapper =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                wrapper.className =
+                    "comparison-table-wrapper";
+
+
+                /*
+                 * Put table inside wrapper
+                 */
+
+                table.parentNode.insertBefore(
+                    wrapper,
+                    table
+                );
+
+
+                wrapper.appendChild(
+                    table
+                );
+
+
+                /*
+                 * Improve table cells
+                 */
+
+                const cells =
+                    table.querySelectorAll(
+                        "th, td"
+                    );
+
+
+                cells.forEach(function (cell) {
+
+                    cell.style.verticalAlign =
+                        "top";
+
+                });
+
+            });
+
+        }
+
+
+        /*
+         * ==================================================
+         * FIX TABLE HEADER
+         *
+         * If a table doesn't have <thead>,
+         * automatically treat its first row as header.
+         * ==================================================
+         */
+
+        if (articleContent) {
+
+            const tables =
+                articleContent.querySelectorAll(
+                    "table"
+                );
+
+
+            tables.forEach(function (table) {
+
+                const firstRow =
+                    table.querySelector(
+                        "tr"
+                    );
+
+
+                if (
+                    firstRow &&
+                    !table.querySelector("thead")
+                ) {
+
+                    const cells =
+                        firstRow.children;
+
+
+                    /*
+                     * Only convert first row
+                     * when it looks like a header.
+                     */
+
+                    if (
+                        cells.length >= 2
+                    ) {
+
+                        Array.from(
+                            cells
+                        ).forEach(function (cell) {
+
+                            const header =
+                                document.createElement(
+                                    "th"
+                                );
+
+
+                            header.innerHTML =
+                                cell.innerHTML;
+
+
+                            Array.from(
+                                cell.attributes
+                            ).forEach(
+                                function (attribute) {
+
+                                    header.setAttribute(
+                                        attribute.name,
+                                        attribute.value
+                                    );
+
+                                }
+                            );
+
+
+                            cell.replaceWith(
+                                header
+                            );
+
+                        });
+
+                    }
+
+                }
+
+            });
+
+        }
+
+
+        /*
+         * ==================================================
+         * FINISHED
+         * ==================================================
+         */
+
+        console.log(
+            "Article loaded successfully:",
+            post.title
+        );
 
     }
 
@@ -629,9 +810,11 @@ document.addEventListener("DOMContentLoaded", async function () {
                 </p>
 
                 <p>
+
                     <a href="blog.html">
                         ← Back to Blog
                     </a>
+
                 </p>
 
             </div>
@@ -641,4 +824,3 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
 });
-
