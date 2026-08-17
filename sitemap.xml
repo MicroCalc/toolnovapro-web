@@ -2,12 +2,19 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-    <!-- Homepage -->
+    <!-- ================================
+         HOMEPAGE
+    ================================= -->
+
     <url>
         <loc>https://toolnova.bond/</loc>
     </url>
 
-    <!-- Main Pages -->
+
+    <!-- ================================
+         MAIN PAGES
+    ================================= -->
+
     <url>
         <loc>https://toolnova.bond/ai-tools.html</loc>
     </url>
@@ -29,7 +36,9 @@
     </url>
 
 
-    <!-- AI Tool Pages -->
+    <!-- ================================
+         AI TOOL PAGES
+    ================================= -->
 
     <url>
         <loc>https://toolnova.bond/tools/chatgpt-plus.html</loc>
@@ -60,7 +69,71 @@
     </url>
 
 
-    <!-- Supporting Pages -->
+    <!-- ================================
+         BLOG ARTICLES
+    ================================= -->
+
+    <!-- Existing Articles -->
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=chatgpt-guide</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=best-ai-tools</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=best-ai-tools-for-students-2026</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=chatgpt-plus-vs-free-2026</loc>
+    </url>
+
+
+    <!-- New Articles -->
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=is-chatgpt-plus-worth-it-2026</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=best-chatgpt-alternatives-2026</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=canva-free-vs-pro-2026</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=is-canva-pro-worth-it-2026</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=capcut-free-vs-pro-2026</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=chatgpt-vs-claude-2026</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=chatgpt-vs-gemini-2026</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=best-ai-image-generators-2026</loc>
+    </url>
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=best-ai-video-generators-2026</loc>
+    </url>
+
+
+    <!-- ================================
+         SUPPORTING PAGES
+    ================================= -->
 
     <url>
         <loc>https://toolnova.bond/about.html</loc>
