@@ -88,32 +88,25 @@
            BLOG ARTICLE
         ================================= */
 
-        .article-wrapper {
+.article-wrapper {
+    width: 92%;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-            max-width: 900px;
-
-            margin: 50px auto;
-
-            padding: 0 20px;
-
-        }
-
-
-        .article-card {
-
-            background: #ffffff !important;
-
-            color: #111827 !important;
-
-            border-radius: 16px;
-
-            padding: 40px;
-
-            box-shadow:
-                0 10px 35px
-                rgba(0, 0, 0, 0.08);
-
-        }
+.article-card {
+    width: 100%;
+    box-sizing: border-box;
+    background: #ffffff !important;
+    color: #111827 !important;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow:
+        0 10px 35px
+        rgba(0, 0, 0, 0.08);
+}
 
 
         .article-category {
@@ -391,45 +384,38 @@
            MOBILE
         ================================= */
 
-        @media (max-width: 768px) {
+@media (max-width: 768px) {
 
-            .article-wrapper {
+    .article-wrapper {
+        width: 94%;
+        max-width: none;
+        margin: 30px auto;
+        padding: 0;
+    }
 
-                margin: 30px auto;
+    .article-card {
+        width: 100%;
+        padding: 25px 20px;
+    }
 
-                padding: 0 15px;
+    .article-title {
+        font-size: 30px;
+    }
 
-            }
+    .article-content {
+        font-size: 16px;
+        line-height: 1.7;
+    }
 
+    .article-content h2 {
+        font-size: 24px;
+    }
 
-            .article-card {
-
-                padding: 25px 20px;
-
-            }
-
-
-            .article-title {
-
-                font-size: 30px;
-
-            }
-
-
-            .article-content {
-
-                font-size: 16px;
-
-            }
-
-
-            .article-content h2 {
-
-                font-size: 24px;
-
-            }
-
-        }
+    .article-image {
+        width: 100%;
+        height: auto;
+    }
+}
 
     </style>
 
@@ -575,6 +561,7 @@
 <script src="assets/js/mobile-menu.js"></script>
 
 <script src="assets/js/post.js"></script>
+
 
 
 </body>
