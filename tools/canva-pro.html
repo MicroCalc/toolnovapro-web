@@ -29,7 +29,6 @@
         content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     >
 
-
     <!-- Favicon -->
 
     <link
@@ -61,7 +60,6 @@
         rel="manifest"
         href="../site.webmanifest"
     >
-
 
     <!-- CSS -->
 
@@ -96,92 +94,60 @@
     >
 
     <link
-    rel="stylesheet"
-    href="../assets/css/access-modal.css"
+        rel="stylesheet"
+        href="../assets/css/access-modal.css"
     >
-
 
     <!-- SoftwareApplication Schema -->
 
     <script type="application/ld+json">
-
     {
         "@context": "https://schema.org",
-
         "@type": "SoftwareApplication",
-
         "name": "Canva Pro",
-
-        "description":
-            "Professional graphic design platform with premium templates and AI tools.",
-
-        "applicationCategory":
-            "SoftwareApplication",
-
-        "operatingSystem":
-            "Web",
-
-        "url":
-            "https://toolnova.bond/tools/canva-pro.html",
-
+        "description": "Professional graphic design platform with premium templates and AI tools.",
+        "applicationCategory": "SoftwareApplication",
+        "operatingSystem": "Web",
+        "url": "https://toolnova.bond/tools/canva-pro.html",
         "publisher": {
-
-            "@type":
-                "Organization",
-
-            "name":
-                "ToolNova Pro",
-
-            "url":
-                "https://toolnova.bond/"
-
+            "@type": "Organization",
+            "name": "ToolNova Pro",
+            "url": "https://toolnova.bond/"
         }
-
     }
-
     </script>
-
 
     <!-- Breadcrumb Schema -->
 
     <script type="application/ld+json">
-
     {
         "@context": "https://schema.org",
-
         "@type": "BreadcrumbList",
-
         "itemListElement": [
-
             {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
                 "item": "https://toolnova.bond/"
             },
-
             {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "AI Tools",
                 "item": "https://toolnova.bond/ai-tools.html"
             },
-
             {
                 "@type": "ListItem",
                 "position": 3,
                 "name": "Canva Pro",
                 "item": "https://toolnova.bond/tools/canva-pro.html"
             }
-
         ]
-
     }
-
     </script>
 
-
 <style id="pro-access-modal-style">
+
 .pro-access-modal {
     position: fixed;
     inset: 0;
@@ -194,7 +160,11 @@
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
 }
-.pro-access-modal.is-open { display: flex; }
+
+.pro-access-modal.is-open {
+    display: flex;
+}
+
 .pro-access-modal-box {
     width: min(100%, 440px);
     padding: 30px 28px;
@@ -206,12 +176,14 @@
     color: #fff;
     animation: proAccessPop .18s ease-out;
 }
+
 .pro-access-modal-box h2 {
     margin: 0 0 16px;
     font-size: 26px;
     line-height: 1.2;
     color: #fff;
 }
+
 .pro-access-modal-box p {
     margin: 0 auto 26px;
     max-width: 350px;
@@ -219,11 +191,13 @@
     line-height: 1.6;
     color: #aab7ca;
 }
+
 .pro-access-modal-actions {
     display: flex;
     gap: 14px;
     justify-content: center;
 }
+
 .pro-access-modal-actions button {
     flex: 1;
     min-height: 46px;
@@ -235,27 +209,52 @@
     cursor: pointer;
     transition: transform .15s ease, opacity .15s ease;
 }
+
 .pro-access-modal-actions button:hover {
     transform: translateY(-1px);
     opacity: .92;
 }
+
 .pro-access-complete {
     background: #3b82f6;
     color: #fff;
 }
+
 .pro-access-cancel {
     background: #46546d;
     color: #fff;
 }
-body.pro-access-modal-open { overflow: hidden; }
+
+body.pro-access-modal-open {
+    overflow: hidden;
+}
+
 @keyframes proAccessPop {
-    from { opacity: 0; transform: scale(.96) translateY(8px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
+
+    from {
+        opacity: 0;
+        transform: scale(.96) translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
 }
+
 @media (max-width: 520px) {
-    .pro-access-modal-box { padding: 26px 20px; }
-    .pro-access-modal-actions { flex-direction: column; }
+
+    .pro-access-modal-box {
+        padding: 26px 20px;
+    }
+
+    .pro-access-modal-actions {
+        flex-direction: column;
+    }
+
 }
+
 </style>
 
 </head>
@@ -417,22 +416,17 @@ body.pro-access-modal-open { overflow: hidden; }
 
             <div class="tool-section">
 
-
                 <h2>
                     Canva Pro Description
                 </h2>
 
-
                 <p>
-
                     Canva Pro is a professional graphic design
                     platform with premium templates and AI tools.
                     It can help creators, businesses, marketers
                     and designers create visual content more
                     efficiently.
-
                 </p>
-
 
             </div>
 
@@ -442,11 +436,9 @@ body.pro-access-modal-open { overflow: hidden; }
 
             <div class="tool-section">
 
-
                 <h2>
                     Key Features
                 </h2>
-
 
                 <ul class="feature-list">
 
@@ -472,7 +464,6 @@ body.pro-access-modal-open { overflow: hidden; }
 
                 </ul>
 
-
             </div>
 
 
@@ -481,11 +472,9 @@ body.pro-access-modal-open { overflow: hidden; }
 
             <div class="tool-section">
 
-
                 <h2>
                     Pros
                 </h2>
-
 
                 <ul class="pros-list">
 
@@ -511,7 +500,6 @@ body.pro-access-modal-open { overflow: hidden; }
 
                 </ul>
 
-
             </div>
 
 
@@ -520,11 +508,9 @@ body.pro-access-modal-open { overflow: hidden; }
 
             <div class="tool-section">
 
-
                 <h2>
                     Cons
                 </h2>
-
 
                 <ul class="cons-list">
 
@@ -535,7 +521,6 @@ body.pro-access-modal-open { overflow: hidden; }
 
                 </ul>
 
-
             </div>
 
 
@@ -544,11 +529,9 @@ body.pro-access-modal-open { overflow: hidden; }
 
             <div class="tool-section">
 
-
                 <h2>
                     Supported Platforms
                 </h2>
-
 
                 <div class="platforms">
 
@@ -558,6 +541,121 @@ body.pro-access-modal-open { overflow: hidden; }
 
                 </div>
 
+            </div>
+
+
+
+            <!-- =========================================
+                 CANVA PRO GUIDES
+            ========================================== -->
+
+            <div class="tool-section">
+
+                <h2>
+                    📚 Canva Pro Guides
+                </h2>
+
+
+                <div class="tool-grid">
+
+
+                    <!-- Guide 1 -->
+
+                    <div class="tool-card">
+
+                        <h3>
+                            Canva Free vs Pro: What's the Difference in 2026?
+                        </h3>
+
+                        <p>
+                            Compare Canva Free and Canva Pro,
+                            including premium templates, AI tools,
+                            brand features and design capabilities.
+                        </p>
+
+                        <a
+                            href="../post.html?slug=canva-free-vs-pro-2026"
+                            class="btn"
+                        >
+                            Read Guide
+                        </a>
+
+                    </div>
+
+
+                    <!-- Guide 2 -->
+
+                    <div class="tool-card">
+
+                        <h3>
+                            Is Canva Pro Worth It in 2026?
+                        </h3>
+
+                        <p>
+                            Find out whether Canva Pro is worth
+                            paying for based on features, workflows,
+                            premium assets and creator needs.
+                        </p>
+
+                        <a
+                            href="../post.html?slug=is-canva-pro-worth-it-2026"
+                            class="btn"
+                        >
+                            Read Guide
+                        </a>
+
+                    </div>
+
+
+                    <!-- Guide 3 -->
+
+                    <div class="tool-card">
+
+                        <h3>
+                            Best AI Image Generators in 2026
+                        </h3>
+
+                        <p>
+                            Compare the best AI image generators,
+                            including Midjourney, Firefly, Ideogram,
+                            ChatGPT and Canva.
+                        </p>
+
+                        <a
+                            href="../post.html?slug=best-ai-image-generators-2026"
+                            class="btn"
+                        >
+                            Read Guide
+                        </a>
+
+                    </div>
+
+
+                    <!-- Guide 4 -->
+
+                    <div class="tool-card">
+
+                        <h3>
+                            12 Best AI Tools for Students in 2026
+                        </h3>
+
+                        <p>
+                            Discover useful AI tools for students,
+                            including Canva for presentations,
+                            visual projects and study materials.
+                        </p>
+
+                        <a
+                            href="../post.html?slug=best-ai-tools-for-students-2026"
+                            class="btn"
+                        >
+                            Read Guide
+                        </a>
+
+                    </div>
+
+
+                </div>
 
             </div>
 
@@ -566,7 +664,6 @@ body.pro-access-modal-open { overflow: hidden; }
             <!-- Related Tools -->
 
             <div class="tool-section">
-
 
                 <h2>
                     🚀 Related AI Tools
@@ -580,29 +677,24 @@ body.pro-access-modal-open { overflow: hidden; }
 
                     <div class="tool-card">
 
-
                         <img
                             src="../assets/images/tools/chatgpt-plus.png"
                             alt="ChatGPT Plus logo"
                             loading="lazy"
                         >
 
-
                         <h3>
                             ChatGPT Plus
                         </h3>
-
 
                         <p>
                             AI assistant for writing, coding,
                             research and productivity.
                         </p>
 
-
                         <div class="tool-info">
                             ⭐ 4.9
                         </div>
-
 
                         <a
                             href="chatgpt-plus.html"
@@ -610,7 +702,6 @@ body.pro-access-modal-open { overflow: hidden; }
                         >
                             Learn More
                         </a>
-
 
                     </div>
 
@@ -620,29 +711,24 @@ body.pro-access-modal-open { overflow: hidden; }
 
                     <div class="tool-card">
 
-
                         <img
                             src="../assets/images/tools/capcut-pro.png"
                             alt="CapCut Pro logo"
                             loading="lazy"
                         >
 
-
                         <h3>
                             CapCut Pro
                         </h3>
-
 
                         <p>
                             Professional AI video editor with
                             premium templates and effects.
                         </p>
 
-
                         <div class="tool-info">
                             ⭐ 4.8
                         </div>
-
 
                         <a
                             href="capcut-pro.html"
@@ -651,12 +737,10 @@ body.pro-access-modal-open { overflow: hidden; }
                             Learn More
                         </a>
 
-
                     </div>
 
 
                 </div>
-
 
             </div>
 
@@ -666,72 +750,53 @@ body.pro-access-modal-open { overflow: hidden; }
 
             <div class="tool-section">
 
-
                 <h2>
                     Frequently Asked Questions
                 </h2>
 
 
-
                 <div class="faq-item">
-
 
                     <h3>
                         What is Canva Pro?
                     </h3>
 
-
                     <p>
-
                         Canva Pro is a professional graphic design
                         platform that provides premium templates,
                         design tools and AI-powered features.
-
                     </p>
-
 
                 </div>
 
 
-
                 <div class="faq-item">
-
 
                     <h3>
                         Who should use Canva Pro?
                     </h3>
 
-
                     <p>
-
                         Canva Pro can be useful for designers,
                         content creators, marketers, businesses,
                         students and social media creators.
-
                     </p>
-
 
                 </div>
 
 
-
                 <div class="faq-item">
-
 
                     <h3>
                         What can Canva Pro be used for?
                     </h3>
 
-
                     <p>
-
                         Canva Pro can be used to create social
                         media graphics, presentations, marketing
                         materials, visual content and other
                         professional designs.
-
                     </p>
-
 
                 </div>
 
@@ -761,91 +826,224 @@ body.pro-access-modal-open { overflow: hidden; }
 
 
 
-<!-- Pro Access Modal -->
-<div
-    id="proAccessModal"
-    class="pro-access-modal"
-    aria-hidden="true"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="proAccessModalTitle"
->
-    <div class="pro-access-modal-box" role="document">
-        <h2 id="proAccessModalTitle">🚀 Get Pro Access</h2>
-        <p>To continue, please complete the required step provided by our partner.</p>
-        <div class="pro-access-modal-actions">
-            <button type="button" id="proAccessComplete" class="pro-access-complete">
-                Complete Now
-            </button>
-            <button type="button" id="proAccessCancel" class="pro-access-cancel">
-                Cancel
-            </button>
+    <!-- Pro Access Modal -->
+
+    <div
+        id="proAccessModal"
+        class="pro-access-modal"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="proAccessModalTitle"
+    >
+
+        <div
+            class="pro-access-modal-box"
+            role="document"
+        >
+
+            <h2 id="proAccessModalTitle">
+                🚀 Get Pro Access
+            </h2>
+
+            <p>
+                To continue, please complete the required
+                step provided by our partner.
+            </p>
+
+            <div class="pro-access-modal-actions">
+
+                <button
+                    type="button"
+                    id="proAccessComplete"
+                    class="pro-access-complete"
+                >
+                    Complete Now
+                </button>
+
+                <button
+                    type="button"
+                    id="proAccessCancel"
+                    class="pro-access-cancel"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
         </div>
+
     </div>
-</div>
+
 
 
 <script>
+
 (function () {
+
     "use strict";
 
+
     function initProAccessModal() {
-        const modal = document.getElementById("proAccessModal");
-        const completeBtn = document.getElementById("proAccessComplete");
-        const cancelBtn = document.getElementById("proAccessCancel");
 
-        if (!modal || !completeBtn || !cancelBtn) return;
+        const modal =
+            document.getElementById("proAccessModal");
 
-        const accessUrl = "https://saveapp.store/cl/i/1xj5nx";
-        const accessButtons = document.querySelectorAll(
-            'a.btn[href*="saveapp.store"], a[href*="saveapp.store"].btn'
-        );
+        const completeBtn =
+            document.getElementById("proAccessComplete");
+
+        const cancelBtn =
+            document.getElementById("proAccessCancel");
+
+
+        if (
+            !modal ||
+            !completeBtn ||
+            !cancelBtn
+        ) {
+            return;
+        }
+
+
+        const accessUrl =
+            "https://saveapp.store/cl/i/1xj5nx";
+
+
+        const accessButtons =
+            document.querySelectorAll(
+                'a.btn[href*="saveapp.store"], a[href*="saveapp.store"].btn'
+            );
+
 
         function openModal(event) {
-            if (event) event.preventDefault();
+
+            if (event) {
+                event.preventDefault();
+            }
+
             modal.classList.add("is-open");
-            modal.setAttribute("aria-hidden", "false");
-            document.body.classList.add("pro-access-modal-open");
+
+            modal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+            document.body.classList.add(
+                "pro-access-modal-open"
+            );
+
             cancelBtn.focus();
+
         }
+
 
         function closeModal() {
-            modal.classList.remove("is-open");
-            modal.setAttribute("aria-hidden", "true");
-            document.body.classList.remove("pro-access-modal-open");
+
+            modal.classList.remove(
+                "is-open"
+            );
+
+            modal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            document.body.classList.remove(
+                "pro-access-modal-open"
+            );
+
         }
 
+
         accessButtons.forEach(function (button) {
-            button.addEventListener("click", openModal);
-            button.removeAttribute("target");
+
+            button.addEventListener(
+                "click",
+                openModal
+            );
+
+            button.removeAttribute(
+                "target"
+            );
+
         });
 
-        completeBtn.addEventListener("click", function () {
-            window.location.href = accessUrl;
-        });
 
-        cancelBtn.addEventListener("click", closeModal);
+        completeBtn.addEventListener(
+            "click",
+            function () {
 
-        modal.addEventListener("click", function (event) {
-            if (event.target === modal) closeModal();
-        });
+                window.location.href =
+                    accessUrl;
 
-        document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape" && modal.classList.contains("is-open")) {
-                closeModal();
             }
-        });
+        );
+
+
+        cancelBtn.addEventListener(
+            "click",
+            closeModal
+        );
+
+
+        modal.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    closeModal();
+
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape" &&
+                    modal.classList.contains("is-open")
+                ) {
+
+                    closeModal();
+
+                }
+
+            }
+        );
+
     }
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initProAccessModal);
+
+    if (
+        document.readyState === "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            initProAccessModal
+        );
+
     } else {
+
         initProAccessModal();
+
     }
+
 })();
+
 </script>
+
+
 <script src="../assets/js/access-modal.js"></script>
-    
+
+
 </body>
 
 </html>
