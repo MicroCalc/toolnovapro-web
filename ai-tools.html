@@ -11,28 +11,18 @@
     >
 
     <title>
-        Best AI Tools in 2026 — Browse & Compare AI Tools | ToolNova Pro
+        AI Tools - ToolNova Pro
     </title>
 
     <meta
         name="description"
-        content="Discover and compare the best AI tools for writing, coding, image generation, video, productivity, research and business. Find the right AI tool for your needs."
-    >
-
-    <link
-        rel="canonical"
-        href="https://toolnova.bond/ai-tools.html"
-    >
-
-    <meta
-        name="robots"
-        content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        content="Browse hundreds of AI tools for writing, coding, image generation, video editing and productivity."
     >
 
 
-    <!-- ============================
-         Favicon
-    ============================= -->
+    <!-- ================================
+         FAVICONS
+    ================================= -->
 
     <link
         rel="icon"
@@ -65,9 +55,9 @@
     >
 
 
-    <!-- ============================
+    <!-- ================================
          CSS
-    ============================= -->
+    ================================= -->
 
     <link
         rel="stylesheet"
@@ -99,6 +89,10 @@
         href="assets/css/responsive.css"
     >
 
+    <link
+        rel="icon"
+        href="favicon.ico"
+    >
 
 </head>
 
@@ -106,129 +100,271 @@
 <body>
 
 
-    <!-- ============================
-         Header
-    ============================= -->
+<!-- ================================
+     HEADER
+================================ -->
 
-    <header class="header">
+<header class="header">
 
-        <div class="container">
+    <div class="container">
 
-            <a
-                href="index.html"
-                class="logo"
-            >
-                ToolNova <span>Pro</span>
+        <a
+            href="index.html"
+            class="logo"
+        >
+            ToolNova <span>Pro</span>
+        </a>
+
+
+        <nav class="navbar">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="ai-tools.html">
+                AI Tools
+            </a>
+
+            <a href="apps.html">
+                Apps
+            </a>
+
+            <a href="software.html">
+                Software
+            </a>
+
+            <a href="blog.html">
+                Blog
+            </a>
+
+            <a href="favorites.html">
+                Favorites
+            </a>
+
+            <a href="about.html">
+                About
             </a>
 
 
-            <nav class="navbar">
+            <button
+                id="themeToggle"
+                type="button"
+                aria-label="Toggle dark mode"
+            >
+                🌙
+            </button>
 
-                <a href="index.html">
-                    Home
-                </a>
+        </nav>
 
-                <a href="ai-tools.html">
-                    AI Tools
-                </a>
+    </div>
 
-                <a href="apps.html">
-                    Apps
-                </a>
-
-                <a href="software.html">
-                    Software
-                </a>
-
-                <a href="blog.html">
-                    Blog
-                </a>
-
-                <a href="favorites.html">
-                    Favorites
-                </a>
-
-                <a href="about.html">
-                    About
-                </a>
+</header>
 
 
-                <button
-                    id="themeToggle"
-                    aria-label="Toggle dark mode"
-                >
-                    🌙
-                </button>
 
-            </nav>
+<!-- ================================
+     PAGE HEADER
+================================ -->
+
+<section class="page-header">
+
+    <div class="container">
+
+        <h1>
+            All AI Tools
+        </h1>
+
+        <p>
+            Browse the best AI tools by category,
+            pricing and popularity.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================================
+     AI TOOLS
+================================ -->
+
+<section class="tools-page">
+
+    <div class="container">
+
+
+        <!-- ============================
+             SEARCH & FILTER
+        ============================= -->
+
+        <div class="tools-toolbar">
+
+
+            <!-- Search -->
+
+            <input
+                type="text"
+                id="toolSearch"
+                placeholder="🔍 Search AI tools..."
+                aria-label="Search AI tools"
+            >
+
+
+            <!-- Category -->
+
+            <select
+                id="categoryFilter"
+                aria-label="Filter by category"
+            >
+
+                <option value="">
+                    All Categories
+                </option>
+
+                <option value="AI Chatbot">
+                    AI Chatbot
+                </option>
+
+                <option value="AI Writing">
+                    AI Writing
+                </option>
+
+                <option value="AI Image">
+                    AI Image
+                </option>
+
+                <option value="AI Video">
+                    AI Video
+                </option>
+
+                <option value="AI Coding">
+                    AI Coding
+                </option>
+
+            </select>
+
+
+            <!-- Pricing -->
+
+            <select
+                id="pricingFilter"
+                aria-label="Filter by pricing"
+            >
+
+                <option value="">
+                    All Pricing
+                </option>
+
+                <option value="Free">
+                    Free
+                </option>
+
+                <option value="Freemium">
+                    Freemium
+                </option>
+
+                <option value="Paid">
+                    Paid
+                </option>
+
+            </select>
+
+
+            <!-- Sort -->
+
+            <select
+                id="sortTools"
+                aria-label="Sort AI tools"
+            >
+
+                <option value="">
+                    Sort By
+                </option>
+
+                <option value="rating">
+                    Highest Rating
+                </option>
+
+                <option value="name">
+                    A - Z
+                </option>
+
+            </select>
+
 
         </div>
 
-    </header>
+
+
+        <!-- ============================
+             DYNAMIC TOOL GRID
+             
+             IMPORTANT:
+             tools.js loads the tools here.
+        ============================= -->
+
+        <div
+            id="toolGrid"
+            class="tool-grid"
+        ></div>
 
 
 
-    <!-- ============================
-         Page Header
-    ============================= -->
+        <!-- ============================
+             PAGINATION
+        ============================= -->
 
-    <section class="page-header">
-
-        <div class="container">
-
-            <h1>
-                Best AI Tools in 2026
-            </h1>
+        <div
+            id="pagination"
+            class="pagination"
+        ></div>
 
 
-            <p>
-                Discover, compare and explore the best AI tools
-                for writing, coding, image generation, video,
-                productivity, research and business.
-            </p>
+    </div>
 
-        </div>
-
-    </section>
-
-
-            <!-- ============================
-                 Dynamic Tool Grid
-            ============================= -->
-
-            <div
-                id="toolGrid"
-                class="tool-grid"
-            ></div>
-
-
-            <div
-                id="pagination"
-                class="pagination"
-            ></div>
-
-
-        </div>
-
-    </section>
+</section>
 
 
 
-    <!-- ============================
-         JavaScript
-    ============================= -->
+<!-- ================================
+     JAVASCRIPT
+================================ -->
 
-    <script src="assets/js/favorites.js"></script>
+<script
+    src="assets/js/favorites.js"
+></script>
 
-    <script src="assets/js/tools.js"></script>
 
-    <script src="assets/js/search.js"></script>
+<script
+    src="assets/js/tools.js"
+></script>
 
-    <script src="assets/js/darkmode.js"></script>
 
-    <script src="assets/js/main.js"></script>
+<script
+    src="assets/js/search.js"
+></script>
 
-    <script src="assets/js/mobile-menu.js"></script>
+
+<script
+    src="assets/js/darkmode.js"
+></script>
+
+
+<script
+    src="assets/js/main.js"
+></script>
+
+
+<script
+    src="assets/js/darkmode.js"
+></script>
+
+
+<script
+    src="assets/js/mobile-menu.js"
+></script>
 
 
 </body>
