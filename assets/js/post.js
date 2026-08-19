@@ -479,11 +479,30 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "@type":
                     "Person",
 
+                "@id":
+                    "https://toolnova.bond/about.html#daniel",
+
                 "name":
                     authorName,
 
                 "url":
-                    authorUrl
+                    authorUrl,
+
+                "jobTitle":
+                    "Creator & Editor",
+
+                "worksFor": {
+
+                    "@type":
+                        "Organization",
+
+                    "name":
+                        "ToolNova Pro",
+
+                    "url":
+                        "https://toolnova.bond/"
+
+                }
 
             },
 
@@ -713,7 +732,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                 <strong>
 
-                    <a href="about.html">
+                    <a
+                        href="about.html"
+                        rel="author"
+                    >
                         ${authorName}
                     </a>
 
