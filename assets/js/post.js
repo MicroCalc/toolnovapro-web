@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (!articleContainer) {
 
         console.error(
-            "Article container not found."
+            "ToolNova: #article container not found."
         );
 
         return;
@@ -29,10 +29,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     /*
      * ==================================================
-     * GET SLUG FROM URL
-     *
-     * Example:
-     * post.html?slug=best-ai-tools-for-students-2026
+     * GET SLUG
      * ==================================================
      */
 
@@ -43,6 +40,12 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const slug =
         params.get("slug");
+
+
+    console.log(
+        "ToolNova: Article slug:",
+        slug
+    );
 
 
     /*
@@ -90,11 +93,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                 </p>
 
                 <p>
-
                     <a href="blog.html">
                         ← Back to Blog
                     </a>
-
                 </p>
 
             </div>
@@ -110,27 +111,80 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         /*
          * ==================================================
-         * LOAD BLOG DATABASE
+         * BLOG JSON URL
+         * ==================================================
+         */
+
+        const blogUrl =
+            "assets/data/blog.json";
+
+
+        console.log(
+            "ToolNova: Loading:",
+            blogUrl
+        );
+
+
+        /*
+         * ==================================================
+         * FETCH BLOG JSON
          * ==================================================
          */
 
         const response =
             await fetch(
-                "assets/data/blog.json"
+                blogUrl,
+                {
+                    cache: "no-store"
+                }
             );
+
+
+        console.log(
+            "ToolNova: blog.json status:",
+            response.status
+        );
 
 
         if (!response.ok) {
 
             throw new Error(
-                "Unable to load blog.json"
+                "blog.json could not be loaded. HTTP status: " +
+                response.status
             );
 
         }
 
 
+        /*
+         * ==================================================
+         * PARSE JSON
+         * ==================================================
+         */
+
         const posts =
             await response.json();
+
+
+        console.log(
+            "ToolNova: Blog posts loaded:",
+            posts.length
+        );
+
+
+        /*
+         * ==================================================
+         * CHECK JSON FORMAT
+         * ==================================================
+         */
+
+        if (!Array.isArray(posts)) {
+
+            throw new Error(
+                "blog.json must contain an array of articles."
+            );
+
+        }
 
 
         /*
@@ -141,14 +195,23 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const post =
             posts.find(
-                item =>
-                    item.slug === slug
+                function (item) {
+
+                    return item.slug === slug;
+
+                }
             );
+
+
+        console.log(
+            "ToolNova: Article found:",
+            post
+        );
 
 
         /*
          * ==================================================
-         * ARTICLE DOES NOT EXIST
+         * ARTICLE NOT FOUND
          * ==================================================
          */
 
@@ -187,8 +250,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                     </h2>
 
                     <p>
-                        The article you're looking for
-                        doesn't exist.
+                        The article
+                        <strong>${slug}</strong>
+                        does not exist.
                     </p>
 
                     <p>
@@ -210,15 +274,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         /*
          * ==================================================
-         * DYNAMIC SEO METADATA
+         * SEO TITLE
          *
-         * Day 3 SEO:
-         *
-         * metaTitle and metaDescription come
-         * from blog.json.
-         *
-         * Fallbacks are included so older articles
-         * without SEO fields still work.
+         * Use metaTitle when available.
+         * Fall back to normal article title.
          * ==================================================
          */
 
@@ -228,11 +287,32 @@ document.addEventListener("DOMContentLoaded", async function () {
             "ToolNova Pro";
 
 
+        /*
+         * ==================================================
+         * SEO DESCRIPTION
+         *
+         * Use metaDescription when available.
+         * Fall back to excerpt.
+         * ==================================================
+         */
+
         const seoDescription =
             post.metaDescription ||
             post.excerpt ||
             post.title ||
-            "Explore AI tools, software guides, comparisons and reviews on ToolNova Pro.";
+            "Explore AI tools, reviews, comparisons and guides from ToolNova Pro.";
+
+
+        console.log(
+            "ToolNova: SEO title:",
+            seoTitle
+        );
+
+
+        console.log(
+            "ToolNova: SEO description:",
+            seoDescription
+        );
 
 
         /*
@@ -268,7 +348,8 @@ document.addEventListener("DOMContentLoaded", async function () {
          */
 
         const postUrl =
-            `https://toolnova.bond/post.html?slug=${encodeURIComponent(slug)}`;
+            "https://toolnova.bond/post.html?slug=" +
+            encodeURIComponent(slug);
 
 
         if (canonicalUrl) {
@@ -283,27 +364,26 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         /*
          * ==================================================
-         * ARTICLE STRUCTURED DATA
+         * ARTICLE SCHEMA
          * ==================================================
          */
 
-        const existingArticleSchema =
+        const oldArticleSchema =
             document.getElementById(
                 "articleStructuredData"
             );
 
 
-        if (existingArticleSchema) {
+        if (oldArticleSchema) {
 
-            existingArticleSchema.remove();
+            oldArticleSchema.remove();
 
         }
 
 
         /*
          * ==================================================
-         * CONVERT ARTICLE IMAGE
-         * INTO ABSOLUTE URL
+         * ARTICLE IMAGE
          * ==================================================
          */
 
@@ -324,6 +404,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             catch (error) {
 
+                console.warn(
+                    "ToolNova: Could not convert image URL.",
+                    error
+                );
+
                 articleImage =
                     post.image;
 
@@ -334,7 +419,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         /*
          * ==================================================
-         * BUILD ARTICLE SCHEMA
+         * ARTICLE STRUCTURED DATA
          * ==================================================
          */
 
@@ -371,7 +456,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                     "Person",
 
                 "name":
-                    post.author || "ToolNova Pro"
+                    post.author ||
+                    "ToolNova Pro"
 
             },
 
@@ -392,9 +478,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * ==================================================
-         * ADD ARTICLE IMAGE
-         * ==================================================
+         * Add image
          */
 
         if (articleImage) {
@@ -406,9 +490,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * ==================================================
-         * ADD PUBLISHED DATE
-         * ==================================================
+         * Add published date
          */
 
         if (post.date) {
@@ -420,9 +502,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * ==================================================
-         * ADD MODIFIED DATE
-         * ==================================================
+         * Add modified date
          */
 
         if (post.dateModified) {
@@ -435,7 +515,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         /*
          * ==================================================
-         * CREATE ARTICLE JSON-LD
+         * INSERT ARTICLE JSON-LD
          * ==================================================
          */
 
@@ -466,19 +546,19 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         /*
          * ==================================================
-         * BREADCRUMB STRUCTURED DATA
+         * BREADCRUMB SCHEMA
          * ==================================================
          */
 
-        const existingBreadcrumbSchema =
+        const oldBreadcrumbSchema =
             document.getElementById(
                 "postBreadcrumbStructuredData"
             );
 
 
-        if (existingBreadcrumbSchema) {
+        if (oldBreadcrumbSchema) {
 
-            existingBreadcrumbSchema.remove();
+            oldBreadcrumbSchema.remove();
 
         }
 
@@ -548,32 +628,32 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         /*
          * ==================================================
-         * CREATE BREADCRUMB JSON-LD
+         * INSERT BREADCRUMB JSON-LD
          * ==================================================
          */
 
-        const breadcrumbSchemaScript =
+        const breadcrumbScript =
             document.createElement(
                 "script"
             );
 
 
-        breadcrumbSchemaScript.type =
+        breadcrumbScript.type =
             "application/ld+json";
 
 
-        breadcrumbSchemaScript.id =
+        breadcrumbScript.id =
             "postBreadcrumbStructuredData";
 
 
-        breadcrumbSchemaScript.textContent =
+        breadcrumbScript.textContent =
             JSON.stringify(
                 breadcrumbSchema
             );
 
 
         document.head.appendChild(
-            breadcrumbSchemaScript
+            breadcrumbScript
         );
 
 
@@ -591,7 +671,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
             <h1 class="article-title">
-                ${post.title}
+                ${post.title || "Untitled Article"}
             </h1>
 
 
@@ -615,7 +695,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     ? `
                         <img
                             src="${post.image}"
-                            alt="${post.title}"
+                            alt="${post.title || "ToolNova article"}"
                             class="article-image"
                             loading="eager"
                         >
@@ -644,10 +724,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         /*
          * ==================================================
-         * FIX ARTICLE TABLES
-         *
-         * Automatically finds every table inside
-         * the article and gives it the correct classes.
+         * ARTICLE CONTENT
          * ==================================================
          */
 
@@ -657,82 +734,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             );
 
 
-        if (articleContent) {
-
-            const tables =
-                articleContent.querySelectorAll(
-                    "table"
-                );
-
-
-            tables.forEach(function (table) {
-
-                /*
-                 * Add our table class
-                 */
-
-                table.classList.add(
-                    "comparison-table"
-                );
-
-
-                /*
-                 * Create wrapper
-                 */
-
-                const wrapper =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                wrapper.className =
-                    "comparison-table-wrapper";
-
-
-                /*
-                 * Put table inside wrapper
-                 */
-
-                table.parentNode.insertBefore(
-                    wrapper,
-                    table
-                );
-
-
-                wrapper.appendChild(
-                    table
-                );
-
-
-                /*
-                 * Improve table cells
-                 */
-
-                const cells =
-                    table.querySelectorAll(
-                        "th, td"
-                    );
-
-
-                cells.forEach(function (cell) {
-
-                    cell.style.verticalAlign =
-                        "top";
-
-                });
-
-            });
-
-        }
-
-
         /*
          * ==================================================
-         * FIX TABLE HEADER
-         *
-         * If a table doesn't have <thead>,
-         * automatically treat its first row as header.
+         * FIX TABLES
          * ==================================================
          */
 
@@ -744,96 +748,165 @@ document.addEventListener("DOMContentLoaded", async function () {
                 );
 
 
-            tables.forEach(function (table) {
+            tables.forEach(
+                function (table) {
 
-                const firstRow =
-                    table.querySelector(
-                        "tr"
+                    /*
+                     * Add class
+                     */
+
+                    table.classList.add(
+                        "comparison-table"
                     );
 
 
-                if (
-                    firstRow &&
-                    !table.querySelector("thead")
-                ) {
+                    /*
+                     * Create wrapper
+                     */
 
-                    const cells =
-                        firstRow.children;
+                    const wrapper =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    wrapper.className =
+                        "comparison-table-wrapper";
 
 
                     /*
-                     * Only convert first row
-                     * when it looks like a header.
+                     * Wrap table
                      */
 
+                    table.parentNode.insertBefore(
+                        wrapper,
+                        table
+                    );
+
+
+                    wrapper.appendChild(
+                        table
+                    );
+
+
+                    /*
+                     * Vertical alignment
+                     */
+
+                    const cells =
+                        table.querySelectorAll(
+                            "th, td"
+                        );
+
+
+                    cells.forEach(
+                        function (cell) {
+
+                            cell.style.verticalAlign =
+                                "top";
+
+                        }
+                    );
+
+                }
+            );
+
+        }
+
+
+        /*
+         * ==================================================
+         * FIX TABLE HEADERS
+         * ==================================================
+         */
+
+        if (articleContent) {
+
+            const tables =
+                articleContent.querySelectorAll(
+                    "table"
+                );
+
+
+            tables.forEach(
+                function (table) {
+
+                    const firstRow =
+                        table.querySelector(
+                            "tr"
+                        );
+
+
                     if (
-                        cells.length >= 2
+                        firstRow &&
+                        !table.querySelector("thead")
                     ) {
 
-                        Array.from(
-                            cells
-                        ).forEach(function (cell) {
-
-                            const header =
-                                document.createElement(
-                                    "th"
-                                );
+                        const cells =
+                            firstRow.children;
 
 
-                            header.innerHTML =
-                                cell.innerHTML;
-
+                        if (
+                            cells.length >= 2
+                        ) {
 
                             Array.from(
-                                cell.attributes
+                                cells
                             ).forEach(
-                                function (attribute) {
+                                function (cell) {
 
-                                    header.setAttribute(
-                                        attribute.name,
-                                        attribute.value
+                                    const header =
+                                        document.createElement(
+                                            "th"
+                                        );
+
+
+                                    header.innerHTML =
+                                        cell.innerHTML;
+
+
+                                    Array.from(
+                                        cell.attributes
+                                    ).forEach(
+                                        function (
+                                            attribute
+                                        ) {
+
+                                            header.setAttribute(
+                                                attribute.name,
+                                                attribute.value
+                                            );
+
+                                        }
+                                    );
+
+
+                                    cell.replaceWith(
+                                        header
                                     );
 
                                 }
                             );
 
-
-                            cell.replaceWith(
-                                header
-                            );
-
-                        });
+                        }
 
                     }
 
                 }
-
-            });
+            );
 
         }
 
 
         /*
          * ==================================================
-         * FINISHED
+         * SUCCESS
          * ==================================================
          */
 
         console.log(
-            "Article loaded successfully:",
+            "ToolNova: Article loaded successfully:",
             post.title
-        );
-
-
-        console.log(
-            "SEO title:",
-            seoTitle
-        );
-
-
-        console.log(
-            "SEO description:",
-            seoDescription
         );
 
     }
@@ -841,8 +914,14 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     catch (error) {
 
+        /*
+         * ==================================================
+         * ERROR
+         * ==================================================
+         */
+
         console.error(
-            "Article loading error:",
+            "ToolNova: Article loading error:",
             error
         );
 
@@ -870,12 +949,17 @@ document.addEventListener("DOMContentLoaded", async function () {
                 </h2>
 
                 <p>
-                    Something went wrong while loading
-                    this article.
+                    There was a problem loading this article.
                 </p>
 
-                <p>
-                    Please try again later.
+                <p
+                    style="
+                        color:#dc2626;
+                        font-size:14px;
+                        word-break:break-word;
+                    "
+                >
+                    ${error.message}
                 </p>
 
                 <p>
