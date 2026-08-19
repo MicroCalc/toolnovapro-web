@@ -99,6 +99,241 @@
         href="assets/css/responsive.css"
     >
 
+
+    <!-- ============================
+         PAGE STYLES
+    ============================= -->
+
+    <style>
+
+        /* ============================
+           HUB INTRO
+        ============================= */
+
+        .hub-intro {
+
+            max-width: 900px;
+
+            margin: 0 auto 45px;
+
+        }
+
+
+        .hub-intro h2 {
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .hub-intro p {
+
+            line-height: 1.8;
+
+            margin-bottom: 15px;
+
+        }
+
+
+
+        /* ============================
+           CATEGORY NAVIGATION
+        ============================= */
+
+        .ai-tool-categories {
+
+            padding: 50px 0;
+
+        }
+
+
+        .ai-tool-categories h2 {
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .ai-tool-categories > .container > p {
+
+            margin-bottom: 30px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .category-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 20px;
+
+        }
+
+
+        .category-card {
+
+            display: block;
+
+            padding: 25px;
+
+            border-radius: 16px;
+
+            text-decoration: none;
+
+            background: #ffffff;
+
+            border: 1px solid #e5e7eb;
+
+            color: #111827;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+
+        }
+
+
+        .category-card:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(0, 0, 0, 0.08);
+
+            border-color: #2563eb;
+
+        }
+
+
+        .category-icon {
+
+            display: block;
+
+            margin-bottom: 12px;
+
+            font-size: 32px;
+
+        }
+
+
+        .category-card h3 {
+
+            margin: 0 0 10px;
+
+            font-size: 20px;
+
+            color: #111827;
+
+        }
+
+
+        .category-card p {
+
+            margin: 0;
+
+            line-height: 1.6;
+
+            color: #64748b;
+
+        }
+
+
+
+        /* ============================
+           HOW TO CHOOSE GUIDE
+        ============================= */
+
+        .ai-tools-guide {
+
+            padding: 60px 0;
+
+        }
+
+
+        .ai-tools-guide .container {
+
+            max-width: 900px;
+
+        }
+
+
+        .ai-tools-guide h2 {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .ai-tools-guide h3 {
+
+            margin-top: 30px;
+
+            margin-bottom: 10px;
+
+            font-size: 21px;
+
+        }
+
+
+        .ai-tools-guide p {
+
+            line-height: 1.8;
+
+            margin-bottom: 15px;
+
+        }
+
+
+
+        /* ============================
+           MOBILE
+        ============================= */
+
+        @media (max-width: 900px) {
+
+            .category-grid {
+
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .category-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .category-card {
+
+                padding: 22px;
+
+            }
+
+
+            .ai-tools-guide {
+
+                padding: 45px 0;
+
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
@@ -106,7 +341,7 @@
 
 
     <!-- ============================
-         Header
+         HEADER
     ============================= -->
 
     <header class="header">
@@ -117,7 +352,9 @@
                 href="index.html"
                 class="logo"
             >
+
                 ToolNova <span>Pro</span>
+
             </a>
 
 
@@ -157,7 +394,9 @@
                     aria-label="Toggle dark mode"
                     type="button"
                 >
+
                     🌙
+
                 </button>
 
             </nav>
@@ -169,7 +408,7 @@
 
 
     <!-- ============================
-         Page Header
+         PAGE HEADER
     ============================= -->
 
     <section class="page-header">
@@ -202,7 +441,7 @@
 
 
             <!-- ============================
-                 AI TOOLS HUB INTRO
+                 HUB INTRO
             ============================= -->
 
             <div class="hub-intro">
@@ -246,14 +485,14 @@
 
 
             <!-- ============================
-                 Crawlable Tool Links
+                 CRAWLABLE TOOL LINKS
             ============================= -->
 
             <div class="tool-grid">
 
 
                 <!-- ============================
-                     ChatGPT Plus
+                     CHATGPT PLUS
                 ============================= -->
 
                 <article class="tool-card">
@@ -293,7 +532,7 @@
 
 
                 <!-- ============================
-                     Claude Pro
+                     CLAUDE PRO
                 ============================= -->
 
                 <article class="tool-card">
@@ -333,7 +572,7 @@
 
 
                 <!-- ============================
-                     Gemini Advanced
+                     GEMINI ADVANCED
                 ============================= -->
 
                 <article class="tool-card">
@@ -373,7 +612,7 @@
 
 
                 <!-- ============================
-                     Canva Pro
+                     CANVA PRO
                 ============================= -->
 
                 <article class="tool-card">
@@ -413,7 +652,7 @@
 
 
                 <!-- ============================
-                     CapCut Pro
+                     CAPCUT PRO
                 ============================= -->
 
                 <article class="tool-card">
@@ -453,7 +692,7 @@
 
 
                 <!-- ============================
-                     Midjourney
+                     MIDJOURNEY
                 ============================= -->
 
                 <article class="tool-card">
@@ -493,7 +732,7 @@
 
 
                 <!-- ============================
-                     Runway
+                     RUNWAY
                 ============================= -->
 
                 <article class="tool-card">
@@ -540,7 +779,300 @@
 
 
     <!-- ============================
-         JavaScript
+         AI TOOL CATEGORIES
+    ============================= -->
+
+    <section class="ai-tool-categories">
+
+        <div class="container">
+
+            <h2>
+                Explore AI Tools by Category
+            </h2>
+
+            <p>
+                Find AI tools based on what you want to create,
+                automate, research or accomplish.
+            </p>
+
+
+            <div class="category-grid">
+
+
+                <!-- ============================
+                     AI ASSISTANTS
+                ============================= -->
+
+                <a
+                    href="#ai-assistants"
+                    class="category-card"
+                >
+
+                    <span class="category-icon">
+                        🤖
+                    </span>
+
+                    <h3>
+                        AI Assistants
+                    </h3>
+
+                    <p>
+                        AI assistants for writing, research,
+                        coding and everyday tasks.
+                    </p>
+
+                </a>
+
+
+
+                <!-- ============================
+                     AI WRITING
+                ============================= -->
+
+                <a
+                    href="#ai-writing"
+                    class="category-card"
+                >
+
+                    <span class="category-icon">
+                        ✍️
+                    </span>
+
+                    <h3>
+                        AI Writing Tools
+                    </h3>
+
+                    <p>
+                        Tools for writing, editing, rewriting
+                        and content creation.
+                    </p>
+
+                </a>
+
+
+
+                <!-- ============================
+                     AI IMAGE
+                ============================= -->
+
+                <a
+                    href="#ai-image"
+                    class="category-card"
+                >
+
+                    <span class="category-icon">
+                        🎨
+                    </span>
+
+                    <h3>
+                        AI Image Generators
+                    </h3>
+
+                    <p>
+                        Create images, artwork, graphics and
+                        creative visuals with AI.
+                    </p>
+
+                </a>
+
+
+
+                <!-- ============================
+                     AI VIDEO
+                ============================= -->
+
+                <a
+                    href="#ai-video"
+                    class="category-card"
+                >
+
+                    <span class="category-icon">
+                        🎬
+                    </span>
+
+                    <h3>
+                        AI Video Tools
+                    </h3>
+
+                    <p>
+                        Generate, edit and enhance videos
+                        with AI-powered tools.
+                    </p>
+
+                </a>
+
+
+
+                <!-- ============================
+                     AI CODING
+                ============================= -->
+
+                <a
+                    href="#ai-coding"
+                    class="category-card"
+                >
+
+                    <span class="category-icon">
+                        💻
+                    </span>
+
+                    <h3>
+                        AI Coding Tools
+                    </h3>
+
+                    <p>
+                        AI tools for coding, development,
+                        debugging and programming.
+                    </p>
+
+                </a>
+
+
+
+                <!-- ============================
+                     AI PRODUCTIVITY
+                ============================= -->
+
+                <a
+                    href="#ai-productivity"
+                    class="category-card"
+                >
+
+                    <span class="category-icon">
+                        📚
+                    </span>
+
+                    <h3>
+                        AI Productivity Tools
+                    </h3>
+
+                    <p>
+                        Tools for research, organization,
+                        learning and productivity.
+                    </p>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ============================
+         HOW TO CHOOSE THE BEST
+         AI TOOL
+    ============================= -->
+
+    <section class="ai-tools-guide">
+
+        <div class="container">
+
+            <h2>
+                How to Choose the Best AI Tool
+            </h2>
+
+
+            <p>
+                The best AI tool depends on what you want to
+                accomplish. Before choosing a tool, consider
+                its features, pricing, ease of use, supported
+                platforms and how well it fits your workflow.
+            </p>
+
+
+
+            <h3>
+                1. Consider Your Use Case
+            </h3>
+
+
+            <p>
+                Start by identifying what you need the tool to
+                do. AI assistants can help with research and
+                writing, while specialized tools may be better
+                for image generation, video creation, coding
+                or design.
+            </p>
+
+
+
+            <h3>
+                2. Compare Features
+            </h3>
+
+
+            <p>
+                Compare the features that matter most to you.
+                Look at capabilities, integrations, supported
+                formats, usage limits and available AI models.
+            </p>
+
+
+
+            <h3>
+                3. Check Pricing
+            </h3>
+
+
+            <p>
+                Review free plans, paid plans, usage limits and
+                what features are included in each plan before
+                choosing an AI tool.
+            </p>
+
+
+
+            <h3>
+                4. Consider Ease of Use
+            </h3>
+
+
+            <p>
+                A powerful tool is not always the best choice
+                if it is difficult to use. Consider the
+                interface, learning curve and how easily the
+                tool fits into your existing workflow.
+            </p>
+
+
+
+            <h3>
+                5. Check the Limitations
+            </h3>
+
+
+            <p>
+                Every AI tool has limitations. Check usage
+                limits, supported platforms, output quality,
+                available features and other restrictions
+                before subscribing.
+            </p>
+
+
+
+            <h3>
+                6. Compare Alternatives
+            </h3>
+
+
+            <p>
+                If you're unsure which tool to choose, compare
+                alternatives and look at the differences in
+                features, pricing and use cases.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ============================
+         JAVASCRIPT
     ============================= -->
 
     <script src="assets/js/favorites.js"></script>
