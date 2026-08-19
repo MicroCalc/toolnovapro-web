@@ -24,7 +24,19 @@
         content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     >
 
-    <!-- Favicon -->
+    <!-- ============================
+         CANONICAL
+    ============================= -->
+
+    <link
+        rel="canonical"
+        href="https://toolnova.bond/about.html"
+    >
+
+
+    <!-- ============================
+         FAVICON
+    ============================= -->
 
     <link
         rel="icon"
@@ -56,7 +68,10 @@
         href="site.webmanifest"
     >
 
-    <!-- CSS -->
+
+    <!-- ============================
+         CSS
+    ============================= -->
 
     <link
         rel="stylesheet"
@@ -77,6 +92,35 @@
         rel="stylesheet"
         href="assets/css/responsive.css"
     >
+
+
+    <!-- ============================
+         STRUCTURED DATA
+         ABOUT PAGE + AUTHOR
+    ============================= -->
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "@id": "https://toolnova.bond/about.html#about",
+        "url": "https://toolnova.bond/about.html",
+        "name": "About ToolNova Pro",
+        "description": "Learn about ToolNova Pro, our mission, editorial approach, and the author behind our AI tool reviews, comparisons, tutorials, and technology guides.",
+        "mainEntity": {
+            "@type": "Person",
+            "@id": "https://toolnova.bond/about.html#daniel",
+            "name": "Daniel",
+            "jobTitle": "Creator & Editor",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "ToolNova Pro",
+                "url": "https://toolnova.bond/"
+            },
+            "url": "https://toolnova.bond/about.html"
+        }
+    }
+    </script>
 
 </head>
 
@@ -321,9 +365,15 @@
                      AUTHOR
                 ============================= -->
 
-                <div class="about-card author-card">
+                <div
+                    class="about-card author-card"
+                    id="author"
+                >
 
-                    <div class="author-avatar">
+                    <div
+                        class="author-avatar"
+                        aria-hidden="true"
+                    >
                         D
                     </div>
 
