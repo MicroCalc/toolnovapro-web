@@ -12,6 +12,88 @@ const slug =
 
 
 /* ============================
+   EARLY CANONICAL
+   ============================
+
+   Create the canonical immediately
+   from the ?slug= URL.
+
+   This happens BEFORE tools.json
+   is fetched so search engines can
+   discover the correct canonical
+   as early as possible.
+============================ */
+
+function setCanonical(url) {
+
+    /*
+     * Remove all existing canonical tags.
+     */
+
+    document
+        .querySelectorAll(
+            'link[rel="canonical"]'
+        )
+        .forEach(
+            link => link.remove()
+        );
+
+
+    /*
+     * Do not create a canonical
+     * if no URL is available.
+     */
+
+    if (!url) {
+
+        return;
+
+    }
+
+
+    /*
+     * Create one canonical tag.
+     */
+
+    const canonical =
+        document.createElement(
+            "link"
+        );
+
+
+    canonical.rel =
+        "canonical";
+
+
+    canonical.href =
+        url;
+
+
+    document.head.appendChild(
+        canonical
+    );
+
+}
+
+
+/* ============================
+   Set Canonical Immediately
+============================ */
+
+if (slug) {
+
+    const earlyCanonical =
+        `https://toolnova.bond/tool.html?slug=${encodeURIComponent(slug)}`;
+
+
+    setCanonical(
+        earlyCanonical
+    );
+
+}
+
+
+/* ============================
    Load Tool
 ============================ */
 
@@ -103,40 +185,12 @@ async function loadTool() {
 
 
             /*
-             * Remove any existing canonical.
+             * Invalid tool URLs should
+             * point to the main tool page.
              */
 
-            document
-                .querySelectorAll(
-                    'link[rel="canonical"]'
-                )
-                .forEach(
-                    link =>
-                        link.remove()
-                );
-
-
-            /*
-             * Create canonical for
-             * the current URL.
-             */
-
-            const notFoundCanonical =
-                document.createElement(
-                    "link"
-                );
-
-
-            notFoundCanonical.rel =
-                "canonical";
-
-
-            notFoundCanonical.href =
-                "https://toolnova.bond/tool.html";
-
-
-            document.head.appendChild(
-                notFoundCanonical
+            setCanonical(
+                "https://toolnova.bond/tool.html"
             );
 
 
@@ -189,47 +243,15 @@ async function loadTool() {
 
 
         /* ============================
-           Dynamic Canonical
+           Confirm Correct Canonical
         ============================= */
 
         const canonicalUrl =
             `https://toolnova.bond/tool.html?slug=${encodeURIComponent(tool.slug)}`;
 
 
-        /*
-         * Remove ALL canonical tags.
-         */
-
-        document
-            .querySelectorAll(
-                'link[rel="canonical"]'
-            )
-            .forEach(
-                link =>
-                    link.remove()
-            );
-
-
-        /*
-         * Create ONE canonical tag.
-         */
-
-        const canonical =
-            document.createElement(
-                "link"
-            );
-
-
-        canonical.rel =
-            "canonical";
-
-
-        canonical.href =
-            canonicalUrl;
-
-
-        document.head.appendChild(
-            canonical
+        setCanonical(
+            canonicalUrl
         );
 
 
@@ -434,7 +456,7 @@ async function loadTool() {
 
             breadcrumb.innerHTML = `
 
-                <a href="index.html">
+                <a href="/">
                     Home
                 </a>
 
