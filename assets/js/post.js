@@ -274,6 +274,24 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         /*
          * ==================================================
+         * AUTHOR
+         *
+         * Use the article author when available.
+         * Fall back to Daniel.
+         * ==================================================
+         */
+
+        const authorName =
+            post.author ||
+            "Daniel";
+
+
+        const authorUrl =
+            "https://toolnova.bond/about.html";
+
+
+        /*
+         * ==================================================
          * SEO TITLE
          *
          * Use metaTitle when available.
@@ -312,6 +330,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.log(
             "ToolNova: SEO description:",
             seoDescription
+        );
+
+
+        console.log(
+            "ToolNova: Author:",
+            authorName
         );
 
 
@@ -456,8 +480,10 @@ document.addEventListener("DOMContentLoaded", async function () {
                     "Person",
 
                 "name":
-                    post.author ||
-                    "ToolNova Pro"
+                    authorName,
+
+                "url":
+                    authorUrl
 
             },
 
@@ -478,7 +504,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * Add image
+         * ==================================================
+         * ADD IMAGE
+         * ==================================================
          */
 
         if (articleImage) {
@@ -490,7 +518,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * Add published date
+         * ==================================================
+         * ADD PUBLISHED DATE
+         * ==================================================
          */
 
         if (post.date) {
@@ -502,7 +532,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         /*
-         * Add modified date
+         * ==================================================
+         * ADD MODIFIED DATE
+         * ==================================================
          */
 
         if (post.dateModified) {
@@ -680,10 +712,23 @@ document.addEventListener("DOMContentLoaded", async function () {
                 By
 
                 <strong>
-                    ${post.author || "ToolNova Pro"}
+
+                    <a href="about.html">
+                        ${authorName}
+                    </a>
+
                 </strong>
 
+
+                <span class="author-role">
+
+                    · Creator &amp; Editor, ToolNova Pro
+
+                </span>
+
+
                 &nbsp;•&nbsp;
+
 
                 ${post.date || ""}
 
