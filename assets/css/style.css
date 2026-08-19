@@ -4,6 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
+
 /* ==========================
    RESET
 ========================== */
@@ -18,7 +19,10 @@ html{
     scroll-behavior:smooth;
 }
 
-/* Default = DARK */
+
+/* ==========================
+   DEFAULT = DARK
+========================== */
 
 :root{
     --bg:#0f172a;
@@ -34,6 +38,11 @@ html{
     --border:rgba(255,255,255,.08);
 }
 
+
+/* ==========================
+   BODY
+========================== */
+
 body{
     font-family:'Poppins',sans-serif;
     background:var(--bg);
@@ -41,7 +50,10 @@ body{
     transition:.3s;
 }
 
-/* LIGHT MODE */
+
+/* ==========================
+   LIGHT MODE
+========================== */
 
 body.light{
 
@@ -59,6 +71,11 @@ body.light{
 
 }
 
+
+/* ==========================
+   DARK MODE
+========================== */
+
 body.dark{
 
     --bg:#0f172a;
@@ -75,6 +92,7 @@ body.dark{
 
 }
 
+
 /* ==========================
    CONTAINER
 ========================== */
@@ -84,6 +102,7 @@ body.dark{
     max-width:1200px;
     margin:auto;
 }
+
 
 /* ==========================
    GLOBAL BUTTON
@@ -107,6 +126,7 @@ body.dark{
     transform:translateY(-3px);
 }
 
+
 /* ==========================
    PAGE HEADER
 ========================== */
@@ -125,6 +145,7 @@ body.dark{
     color:var(--text-secondary);
     font-size:18px;
 }
+
 
 /* ==========================
    AI TOOLS PAGE
@@ -151,6 +172,11 @@ body.dark{
     font-size:15px;
 }
 
+
+/* ==========================
+   PAGINATION
+========================== */
+
 .pagination{
     display:flex;
     justify-content:center;
@@ -166,6 +192,7 @@ body.dark{
     color:var(--text);
     cursor:pointer;
 }
+
 
 /* ==========================
    THEME BUTTON
@@ -194,5 +221,163 @@ body.dark{
 .theme-btn:hover{
 
     transform:rotate(20deg) scale(1.1);
+
+}
+
+
+/* =========================================================
+   ARTICLE COMPARISON TABLE
+========================================================= */
+
+.comparison-table-wrapper{
+    width:100%;
+    max-width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    margin:30px 0;
+    -webkit-overflow-scrolling:touch;
+}
+
+
+/* ==========================
+   TABLE
+========================== */
+
+.comparison-table-wrapper table{
+    width:100%;
+    min-width:700px;
+    border-collapse:collapse;
+    table-layout:fixed;
+    margin:0;
+}
+
+
+/* ==========================
+   TABLE CELLS
+========================== */
+
+.comparison-table-wrapper th,
+.comparison-table-wrapper td{
+
+    padding:16px;
+
+    border:1px solid var(--border);
+
+    text-align:left;
+
+    vertical-align:top;
+
+    /*
+       IMPORTANT:
+       Prevent words from breaking
+       letter-by-letter.
+    */
+
+    word-break:normal !important;
+
+    overflow-wrap:break-word !important;
+
+    white-space:normal !important;
+
+}
+
+
+/* ==========================
+   TABLE COLUMN WIDTHS
+========================== */
+
+.comparison-table-wrapper th:nth-child(1),
+.comparison-table-wrapper td:nth-child(1){
+
+    width:25%;
+
+}
+
+.comparison-table-wrapper th:nth-child(2),
+.comparison-table-wrapper td:nth-child(2){
+
+    width:25%;
+
+}
+
+.comparison-table-wrapper th:nth-child(3),
+.comparison-table-wrapper td:nth-child(3){
+
+    width:25%;
+
+}
+
+.comparison-table-wrapper th:nth-child(4),
+.comparison-table-wrapper td:nth-child(4){
+
+    width:25%;
+
+}
+
+
+/* ==========================
+   TABLE HEADER
+========================== */
+
+.comparison-table-wrapper th{
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+
+/* ==========================
+   TABLE BODY
+========================== */
+
+.comparison-table-wrapper td{
+
+    color:var(--text-secondary);
+
+}
+
+
+/* =========================================================
+   MOBILE COMPARISON TABLE
+========================================================= */
+
+@media (max-width:700px){
+
+    .comparison-table-wrapper{
+
+        width:100%;
+
+        max-width:100%;
+
+        overflow-x:auto;
+
+        overflow-y:hidden;
+
+    }
+
+    .comparison-table-wrapper table{
+
+        min-width:700px;
+
+        width:700px;
+
+    }
+
+    .comparison-table-wrapper th,
+    .comparison-table-wrapper td{
+
+        padding:12px;
+
+        font-size:14px;
+
+        word-break:normal !important;
+
+        overflow-wrap:break-word !important;
+
+        white-space:normal !important;
+
+    }
 
 }
