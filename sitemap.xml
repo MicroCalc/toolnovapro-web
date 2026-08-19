@@ -73,8 +73,6 @@
          BLOG ARTICLES
     ================================= -->
 
-    <!-- Existing Articles -->
-
     <url>
         <loc>https://toolnova.bond/post.html?slug=chatgpt-guide</loc>
     </url>
@@ -90,9 +88,6 @@
     <url>
         <loc>https://toolnova.bond/post.html?slug=chatgpt-plus-vs-free-2026</loc>
     </url>
-
-
-    <!-- New Articles -->
 
     <url>
         <loc>https://toolnova.bond/post.html?slug=is-chatgpt-plus-worth-it-2026</loc>
@@ -128,6 +123,12 @@
 
     <url>
         <loc>https://toolnova.bond/post.html?slug=best-ai-video-generators-2026</loc>
+    </url>
+
+    <!-- NEW ARTICLE -->
+
+    <url>
+        <loc>https://toolnova.bond/post.html?slug=chatgpt-plus-vs-go-vs-free-2026</loc>
     </url>
 
 
